@@ -1,0 +1,5 @@
+Macchina: libreria mp3 ----> PY -----> OUT:feature ----> database
+
+Macchina Online: Confronto
+
+Utente: Nel social, carica mp3 ------> PY Server, Analisi, Confrnto ----> [y,n]
