@@ -8,7 +8,10 @@ from django.views.generic.base import View
 
 
 def db_posts(request):
-    return render(request, "private/db_posts.html")
+    return render(request, "db_posts.html")
 
 def index(request):
-    return render(request, "public/index.html")
+    return render(request, "index.html")
+
+def upload(request):
+    return render(request, "upload.html")

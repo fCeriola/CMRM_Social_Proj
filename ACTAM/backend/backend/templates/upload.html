@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Upload file to Firestore</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+</head>
+<body>
+
+    <input type="file" id="uploaded_song">
+    <audio id="song">
+    <button onclick="uploadAudio()">Upload Audio</button>
+<!--
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD69dMji8qEyg_72e-JZ8pkLpcWFhboxbg",
+            authDomain: "need-chords.firebaseapp.com",
+            projectId: "need-chords",
+            storageBucket: "need-chords.appspot.com",
+            messagingSenderId: "93635873893",
+            appId: "1:93635873893:web:64c4ea4c5a723fa39c8a8c"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log(firebase);
+
+        function uploadAudio(){
+            const myStorage = firebase.storage().ref()
+
+            const uploadedFile = document.querySelector("#uploaded_song").files[0]
+
+            const nameOfFile = new Date() +  "-" + uploadedFile.name
+            // change to: artist-nameOfSong
+
+            const metadata = {
+                contentType: nameOfFile.type
+            }
+
+            const task = myStorage.child(nameOfFile).put(uploadedFile, metadata)
+
+            task
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                console.log(url)
+                alert("Audio has been uploaded")
+                const imageElement = document.querySelector("#song")
+                imageElement.src = url
+            })
+
+
+        }
+
+
+    </script>
+     
+-->
+
+</body>
+
+</html>
+

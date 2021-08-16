@@ -26,4 +26,5 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('index/', views.index, name="index"),
     path('db_posts/', views.db_posts, name="db_posts"),
+    path('upload/', views.upload, name="upload"),
 ]
