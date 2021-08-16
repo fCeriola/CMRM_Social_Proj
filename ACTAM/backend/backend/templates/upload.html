@@ -1,8 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
 
     <title>Upload file to Firestore</title>
+
+    <link rel="stylesheet" href="{% static 'css/upload.css'%}">
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
@@ -11,9 +15,15 @@
 <body>
 
     <input type="file" id="uploaded_song">
-    <audio id="song">
-    <button onclick="uploadAudio()">Upload Audio</button>
-<!--
+    <input type="text" id="artist" placeholder="artist">
+    <input type="text" id="title" placeholder="title">
+    <br><br>
+    <button id="upload_button">Upload Audio</button>
+    <br><br>
+    <div id="audio_controls">
+        <audio controls></audio>
+    </div>
+
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -28,36 +38,9 @@
         firebase.initializeApp(firebaseConfig);
         console.log(firebase);
 
-        function uploadAudio(){
-            const myStorage = firebase.storage().ref()
-
-            const uploadedFile = document.querySelector("#uploaded_song").files[0]
-
-            const nameOfFile = new Date() +  "-" + uploadedFile.name
-            // change to: artist-nameOfSong
-
-            const metadata = {
-                contentType: nameOfFile.type
-            }
-
-            const task = myStorage.child(nameOfFile).put(uploadedFile, metadata)
-
-            task
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                console.log(url)
-                alert("Audio has been uploaded")
-                const imageElement = document.querySelector("#song")
-                imageElement.src = url
-            })
-
-
-        }
-
-
     </script>
      
--->
+     <script src="{% static 'js/upload.js'%}"></script>
 
 </body>
 
