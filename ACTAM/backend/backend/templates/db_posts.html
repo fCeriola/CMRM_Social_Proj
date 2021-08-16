@@ -1,0 +1,56 @@
+{% load static %}   <!-- change all references to the new db of posts -->
+
+<html>
+    <head>
+
+        <title>Firebase</title>
+
+        <link rel="stylesheet" href="{% static 'css/index_style.css'%}">
+
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+
+    </head>
+    <body>
+
+        <h1>Cloud Cafe</h1>
+
+        <div class="content">
+
+            <form id="add-cafe-form">
+                <input type="text" name="name" placeholder=" New Cafe name">
+                <input type="text" name="city" placeholder="New Cafe city">
+                <button>Add Cafe</button>
+
+            </form>
+
+            <ul id="cafe-list"></ul>
+
+        </div>
+
+
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyATs_s796OdS7QPlIkftumGs2a4-TN80uA",
+                authDomain: "readingfile-74196.firebaseapp.com",
+                projectId: "readingfile-74196",
+                storageBucket: "readingfile-74196.appspot.com",
+                messagingSenderId: "534690811424",
+                appId: "1:534690811424:web:f0d023b82db889f79c7645",
+                measurementId: "G-7V7T8LER66"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            console.log(firebase);
+
+            const db = firebase.firestore();
+
+            db.settings({ timestampsInSnapshot: true });
+    
+        </script>
+
+        <script src="{% static 'js/index_app.js'%}"></script>
+    </body>
+</html>

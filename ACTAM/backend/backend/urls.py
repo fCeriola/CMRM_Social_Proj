@@ -16,6 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from backend import settings, views
+
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index, name="index"),
+    path('index/', views.index, name="index"),
+    path('db_posts/', views.db_posts, name="db_posts"),
 ]
