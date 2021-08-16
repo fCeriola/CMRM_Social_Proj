@@ -1,0 +1,88 @@
+
+
+#counter {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    background-color: blue;
+      color: aliceblue;
+  }
+
+  /* #reset {
+      background-color: bisque;
+      color: black;
+      border-end-end-radius: 10%;
+      padding: 10px;
+      margin: 10px;
+  } */
+
+
+  li{
+      padding: 50px;
+  }
+
+
+  #cross {
+      margin-bottom: 5px;
+      height: 10px;
+      width: 10px;
+      color: grey;
+      background-color: antiquewhite;
+      align-items: center;
+      align-content: center;
+      cursor: pointer;
+
+  }
+
+
+  .custom-btn {
+    margin: auto;
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+  }
+
+  .btn-1 {
+    background: rgb(6,14,131);
+    background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+    border: none;
+  }
+  .btn-1:hover {
+     background: rgb(0,3,255);
+  background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+  }
+  .btn-5:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .btn-5:hover:before,
+  .btn-5:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+  .custom-btn:active{
+      top: 5px;
+  }
+
+  

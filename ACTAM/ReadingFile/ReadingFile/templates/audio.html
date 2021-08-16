@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Listen to the audiobook:<br>
+    <audio controls>
+        <source src="{{ audio }}" type="audio/mpeg">
+    </audio>
+</p>
+{% endblock content %}

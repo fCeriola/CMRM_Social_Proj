@@ -1,0 +1,33 @@
+FIREBASE QUANDO SI INCAZZA:
+(per far eseguire il comando firebase eludendo la sicurezza)
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+
+Login:
+https://codepen.io/colorlib/pen/rxddKy
+
+
+Animated Buttons:
+https://codepen.io/yuhomyan/pen/OJMejWJ?editors=0100
+
+
+
+MUSIC:
+visualizer brutto ma semplice:
+https://codepen.io/aqandrew/pen/OJVNRgV?editors=1010
+
+player hypster:
+https://codepen.io/himalayasingh/pen/QZKqOX
+player figo:
+https://codepen.io/JavaScriptJunkie/pen/qBWrRyg
+
+
+
+FAVICON:
+cross:
+http://tools.dynamicdrive.com/favicon/
+https://stackoverflow.com/questions/4888377/how-to-add-a-browser-tab-icon-favicon-for-a-website
+
+
+STYLE:
+color: (7, 82, 167)
