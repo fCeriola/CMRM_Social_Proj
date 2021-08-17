@@ -57,7 +57,9 @@ def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=Non
 
 # Compute chroma features
 #FIX FILE PATH
-fn_wav = os.path.join('data', 'audio', 'Beatles_LetItBe.wav') #update file path
+#fn_wav = os.path.join('data', 'audio', 'Beatles_LetItBe.wav') #update file path
+#fn_wav = "C:/Users/francoa/Documents/MuseScore3/Spartiti/prova.wav"
+fn_wav = "backend/backend/media/prova.wav"
 N = 4096
 H = 2048
 X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
@@ -166,6 +168,6 @@ def compute_results(chord_max, Fs, chord_labels):
 results, timestamp = compute_results(chord_max, Fs, chord_labels)
 
 #Saving figure to path
-fig.savefig('C:\\Users\\DAVID\\Desktop\\Università\\plot.png') #update this path 
+#fig.savefig('C:\\Users\\DAVID\\Desktop\\Università\\plot.png') #update this path 
 print(results)
 print(timestamp)

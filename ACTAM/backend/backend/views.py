@@ -1,9 +1,8 @@
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, ListView, CreateView
-from  django.core.files.storage import FileSystemStorage
-from django.views.generic.base import View
-# from .form import BookForm
-# from .models import Book
+# from django.views.generic import TemplateView, ListView, CreateView
+# from  django.core.files.storage import FileSystemStorage
+# from django.views.generic.base import View
+import backend.chromogram as c
 
 
 
@@ -15,6 +14,11 @@ def index(request):
 
 def upload(request):
     return render(request, "upload.html")
+
+def analyze(request, audiofilename):
+    print("inside chromogram view call")
+    #c.
+    return render(request, "analyze.html")
 
 def user_account(request):
     return render(request, "user_account.html")

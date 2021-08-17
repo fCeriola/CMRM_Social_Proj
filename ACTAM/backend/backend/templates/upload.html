@@ -24,12 +24,18 @@
     <input type="text" id="artist" placeholder="artist" value="">
     <input type="text" id="title" placeholder="title" value="">
     <br><br>
-    <button id="upload_button"></button>Upload Audio</button>
+    <button id="upload_button">Upload Audio</button>
     <label id="process"></label>
     <br><br>
-    <!--<div id="audio_controls">
-        <audio controls></audio>
-    </div> -->
+
+    <div id="output">
+    </div>
+
+
+    <form action="analyze">
+        <button id="analyze_button">Analyze</button>
+    </form>
+
 
     <div class="navbar">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
