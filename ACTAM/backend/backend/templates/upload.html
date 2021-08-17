@@ -24,6 +24,15 @@
         <audio controls></audio>
     </div>
 
+    <div class="navbar">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+        <ul>
+            <li><a href="{% url 'index' %}">Index - Login</a></li>
+            <li><a href="{% url 'upload' %}">Upload</a></li>
+            <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
+        </ul>
+    </div>
+
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {

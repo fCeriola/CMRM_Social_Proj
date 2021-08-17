@@ -14,18 +14,18 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
 
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
 
 </head>
 
 <body class="grey lighten-3">
-
     <!-- NAVBAR -->
     <nav class="z-depth-3 blue lighten-1">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo">
-                <img src="media/Logo_Politecnico_Milano.png" style="width: 100px; margin-top: 10px;" alt="dioporco">
+                <img src="{{ image }}" style="width: 100px; margin-top: 10px;" alt="no image">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li class="logged-in" style="display: none">
@@ -121,7 +121,15 @@
         </ul>
     </div>
 
-
+    <div class="navbar">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+        <ul>
+            <li><a href="{% url 'index' %}">Index - Login</a></li>
+            <li><a href="{% url 'upload' %}">Upload</a></li>
+            <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
+        </ul>
+    </div>
+    
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -140,6 +148,16 @@
                 timestampsInSnapshots: true
             }) //no error or warning in console
     </script>
+
+<!--
+    <script>
+        //const imageRef = firebase.firestore().getInstance().getReference().child("Media").child("Logo_Politecnico_Milano.png").getDownloadURL
+        //const logoPolimi = firebase.firebase().ref('Media/Logo_Politecnico_Milano.png');
+        const imageRef2 = firebase.storage().snapshot.ref("Media/Logo_Politecnico_Milano.png").getDownloadURL()
+        print(imageRef2)
+        console.log(imageRef, imageRef2)
+    </script>
+-->
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

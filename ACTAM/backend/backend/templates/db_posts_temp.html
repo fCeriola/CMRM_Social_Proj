@@ -9,24 +9,18 @@
 
 <body>
 
-    <main class="grid-container">
-      
-        <div class="theheader">
-            <h1>DB POSTS TEMP</h1>
-            </div>
-        
-            <div class="navbar">
-                <ul>
-                    <li><a href="{% url 'index' %}">Index - Login</a></li>
-                    <li><a href="{% url 'upload' %}">Upload</a></li>
-                    <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
-                </ul>
-            </div> 
-        
-        </div>
-
-    </main>
-
+    <div class="theheader">
+        <h1>DB POSTS TEMP</h1>
+    </div>
+    
+    <div class="navbar" id="navbar">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+        <ul>
+            <li><a href="{% url 'index' %}">Index - Login</a></li>
+            <li><a href="{% url 'upload' %}">Upload</a></li>
+            <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
+        </ul>
+    </div> 
 
     <script>
         // Your web app's Firebase configuration

@@ -56,7 +56,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "ReadingFile/templates")],
+        'DIRS': [os.path.join(BASE_DIR, "backend/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,7 +129,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 #media
-MEDIAFILES_DIRS = [ os.path.join(BASE_DIR, 'backend/media') ]
+#MEDIAFILES_DIRS = [ os.path.join(BASE_DIR, 'backend/media') ]
 
 MEDIA_URL = '/media/'
 
