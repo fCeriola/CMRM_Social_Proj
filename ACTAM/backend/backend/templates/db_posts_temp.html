@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>db posts temp</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/db_posts_temp.css'%}">
+</head>
+
+<body>
+
+    <main class="grid-container">
+      
+        <div class="theheader">
+            <h1>DB POSTS TEMP</h1>
+            </div>
+        
+            <div class="navbar">
+                <ul>
+                    <li><a href="{% url 'index' %}">Index - Login</a></li>
+                    <li><a href="{% url 'upload' %}">Upload</a></li>
+                    <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
+                </ul>
+            </div> 
+        
+        </div>
+
+    </main>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyD69dMji8qEyg_72e-JZ8pkLpcWFhboxbg",
+            authDomain: "need-chords.firebaseapp.com",
+            projectId: "need-chords",
+            storageBucket: "need-chords.appspot.com",
+            messagingSenderId: "93635873893",
+            appId: "1:93635873893:web:64c4ea4c5a723fa39c8a8c"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log(firebase);
+
+        const db = firebase.firestore();
+
+        db.settings({ timestampsInSnapshot: true });
+
+    </script>
+
+    <script src="{% static 'js/db_posts_temp.js'%}"></script>
+
+</body>
+
+</html>

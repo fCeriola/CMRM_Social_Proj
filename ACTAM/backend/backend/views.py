@@ -15,3 +15,6 @@ def index(request):
 
 def upload(request):
     return render(request, "upload.html")
+
+def db_posts_temp(request):
+    return render(request, "db_posts_temp.html")

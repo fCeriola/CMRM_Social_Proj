@@ -1,0 +1,46 @@
+/* -------------------------------- NAVBAR ----------------------- */
+.navbar {
+    grid-area: menu;
+    height: auto;
+    max-width: 20em;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+  
+  }
+  /* stile nav */
+  .navbar ul li a {
+    color: white;
+    font-size: 1em;
+    display: block;
+    padding: 1em 3em 1em 3em;
+    text-decoration: none; /* togliere sottolineatura ai link*/
+    background-color: black;
+  }
+  
+  
+  
+  /* togliere impostazioni pallini nelle liste */
+  .navbar ol, ul {
+    list-style: none;
+  }
+  
+  /* on hover colore blu*/
+  .navbar ul li a:hover {
+    background-color: grey;
+    color: black;
+  }
+  
+  /* Pagina visitata in questo momento rimane il nav menu in grigio */
+  .navbar ul li a.active {
+    background-color: grey;
+    color: black;
+  }
+  
+  .navbar ul li a.disable {
+   pointer-events: none;
+   cursor: default;
+   color:grey;
+  }
+  /* ---------------------------- END NAVBAR ------------------------------- */
+  
