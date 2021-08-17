@@ -1,4 +1,4 @@
-const guideList = document.querySelector('.guides')
+const guideList = document.querySelector('.guide')
 const loggedOutLinks = document.querySelectorAll('.logged-out')
 const loggedInLinks = document.querySelectorAll('.logged-in')
 
