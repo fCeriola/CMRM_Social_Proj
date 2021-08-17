@@ -16,5 +16,8 @@ def index(request):
 def upload(request):
     return render(request, "upload.html")
 
+def user_account(request):
+    return render(request, "user_account.html")
+
 def db_posts_temp(request):
     return render(request, "db_posts_temp.html")

@@ -27,5 +27,6 @@ urlpatterns = [
     path('index/', views.index, name="index"),
     path('db_posts/', views.db_posts, name="db_posts"),
     path('upload/', views.upload, name="upload"),
+    path('user_account/', views.user_account, name="user_account"),
     path('db_posts_temp/', views.db_posts_temp, name="db_posts_temp"),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

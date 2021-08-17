@@ -3,14 +3,12 @@ var audioControls = document.getElementById("audio_controls");
 
 
 
-uploadButton.onclick = function(){
-    const myStorage = firebase.storage().ref();
+uploadButton.onclick = function() {
+    const myStorage = firebase.storage().ref('Songs/');
 
     const uploadedFile = document.querySelector("#uploaded_song").files[0];
 
-    const nameOfFile = new Date() +  "-" + uploadedFile.name;
-    // change to: artist-nameOfSong
-    // const nameOfFile = document.getElementById("#artist") +  "-" + document.getElementById("#title")
+    const nameOfFile = document.getElementById("artist").value + "-" + document.getElementById("title").value + ".wav";
 
     const metadata = {
         contentType: nameOfFile.type
@@ -18,18 +16,12 @@ uploadButton.onclick = function(){
 
     const task = myStorage.child(nameOfFile).put(uploadedFile, metadata);
 
-    task
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-        console.log(url)
-        alert("Audio has been uploaded")
-        const imageElement = document.querySelector("#song")
-        imageElement.src = url
+    task.on('state_changed', function(snapshot) {
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        document.getElementById("process").innerHTML = "Uploading..." + progress.toFixed(2) + "%";
     });
 
-    /* if()
-        audioControls.style.display = 'block';
-    else
-        audioControls.style.display = 'none'; */
+    document.getElementById("artist").value = "";
+    document.getElementById("title").value = "";
 
 }

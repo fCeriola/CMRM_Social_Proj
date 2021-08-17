@@ -144,9 +144,6 @@ ax[1, 0].set_yticks(np.arange( len(chord_labels) ))
 ax[1, 0].set_yticklabels(chord_labels)
 ax[1, 0].grid()
 
-#Saving figure to path
-fig.savefig('C:\\Users\\DAVID\\Desktop\\Università\\plot.png') #update this path 
-
 # Results as string and timestamps
 def compute_results(chord_max, Fs, chord_labels):
     first_element = np.argmax(chord_max[:,0])
@@ -168,5 +165,7 @@ def compute_results(chord_max, Fs, chord_labels):
 
 results, timestamp = compute_results(chord_max, Fs, chord_labels)
 
+#Saving figure to path
+fig.savefig('C:\\Users\\DAVID\\Desktop\\Università\\plot.png') #update this path 
 print(results)
 print(timestamp)
