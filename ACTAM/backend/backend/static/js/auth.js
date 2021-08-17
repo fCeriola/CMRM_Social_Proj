@@ -3,8 +3,8 @@
 auth.onAuthStateChanged(user => {
     if (user) {
         db.collection('guides').onSnapshot(snapshot => {
-            setupUI(user);
             setupGuides(snapshot.docs)
+            setupUI(user);
         });
     } else {
         setupUI();
@@ -45,15 +45,14 @@ signupForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-signup')
         M.Modal.getInstance(modal).close();
         signupForm.reset();
-    })
+    }).catch(err => { alert(err.message) })
 })
 
 //logout
-
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
     e.preventDefault;
-    auth.signOut().then(() => {})
+    auth.signOut()
 })
 
 const loginForm = document.querySelector('#login-form');

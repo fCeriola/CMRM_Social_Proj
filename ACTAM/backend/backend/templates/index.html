@@ -1,4 +1,5 @@
-{% load static %}   <!-- change all references to the new db of users-->
+{% load static %}
+<!-- change all references to the new db of users-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
 
-    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+    <!-- <link rel="stylesheet" href="{% static 'css/index.css'%}"> -->
 
 </head>
 
@@ -31,9 +32,9 @@
                 <li class="logged-in" style="display: none">
                     <a href="#" class="aliceblue-text modal-trigger" data-target="modal-account">myAccount</a>
                 </li>
-                <li class="logged-in" style="display: none">
+                <!-- <li class="logged-in" style="display: none">
                     <a href="#" class="aliceblue-text modal-trigger" data-target="modal-create">Need Chords?</a>
-                </li>
+                </li> -->
                 <li class="logged-in" style="display: none">
                     <a href="#" class="aliceblue-text" id="logout">Logout</a>
                 </li>
@@ -117,19 +118,19 @@
     <!-- GUIDE LIST -->
     <div class="container" style="margin-top: 40px;">
         <ul class="collapsible z-depth-0 guide" style="border: none;">
-            <h5 class="center"> Login to view songs</h5>
+
         </ul>
     </div>
 
-    <div class="navbar">
+    <!-- <div class="navbar">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
-            <li><a href="{% url 'index' %}">Index - Login</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
-            <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
+            <li><a href="{% url 'db_posts' %}">Pool</a></li>
         </ul>
-    </div>
-    
+    </div> -->
+
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
