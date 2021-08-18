@@ -21,7 +21,7 @@
     <div class="content">
 
         <form id="add-cafe-form">
-            <input type="text" name="name" placeholder=" New Cafe name">
+            <input type="text" name="name" placeholder="New Cafe name">
             <input type="text" name="city" placeholder="New Cafe city">
             <button>Add New Post</button>
 
@@ -30,15 +30,15 @@
         <ul id="cafe-list"></ul>
 
     </div>
-
+    <!--
     <div class="navbar">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'upload' %}">Upload</a></li>
+            <li><a href="{% url 'upload' %}">Upload new file</a></li>
             <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
-    </div>
+    </div> -->
 
     <script>
         // Your web app's Firebase configuration
@@ -46,6 +46,7 @@
         var firebaseConfig = {
             apiKey: "AIzaSyATs_s796OdS7QPlIkftumGs2a4-TN80uA",
             authDomain: "readingfile-74196.firebaseapp.com",
+            databaseURL: "https://ReadingFile.firebaseio.com",
             projectId: "readingfile-74196",
             storageBucket: "readingfile-74196.appspot.com",
             messagingSenderId: "534690811424",

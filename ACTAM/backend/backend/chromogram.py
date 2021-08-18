@@ -26,6 +26,7 @@ config = {
 firebase = pyrebase.initialize_app(config)
 
 storage = firebase.storage()
+database = firebase.database()
 
 def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=None, version='STFT', norm='2'):
     """Compute chromagram for WAV file specified by filename
@@ -157,14 +158,15 @@ def compute_results(chord_max, Fs, chord_labels):
 
 def chromogram_f(name_of_file):
     my_wav = "Songs/" + name_of_file
-    path =  os.path.join(BASE_DIR, '/backend/')
-    print(path)
+    path =  BASE_DIR + '/'
+    #print(BASE_DIR)
+    #print(path)
     my_path = path.replace('\\', '/')
-    print(my_path)
+    #print(my_path)
     storage.child(my_wav).download(filename=name_of_file, path=my_path)
     # Compute chroma features
     fn_wav = my_path + name_of_file
-    print("diocane se non arriva fino a qua smadonno", fn_wav)
+    print("fn_wav status: ok")
     N = 4096
     H = 2048
     X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
@@ -189,7 +191,19 @@ def chromogram_f(name_of_file):
     #Saving figure to path
     # fig.savefig(my_path + '/plot.png')
     # print(fig.name, fig.bytes)
-
     chords, timestamps = compute_results(chord_max, Fs_X, chord_labels)
+    os.remove(name_of_file)
+    chords_s = ""
+    timestamps_s = ""
+    for e in chords:
+        chords_s = chords_s + e + ' '
+    for e in timestamps:
+        timestamps_s = timestamps_s + str(e) + ' '
+    # a_post = {
+    #     "Chords": chords_s,
+    #     "NameOfSongFile": name_of_file,
+    #     "TimestampsInSec": timestamps_s
+    # }
+    # print(a_post)
 
-    return chords, timestamps
+    return chords_s, timestamps_s

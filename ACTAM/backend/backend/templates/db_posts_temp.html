@@ -5,6 +5,11 @@
 <head>
 	<title>db posts temp</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/db_posts_temp.css'%}">
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -12,15 +17,24 @@
     <div class="theheader">
         <h1>DB POSTS TEMP</h1>
     </div>
-    
+    <p>
+        <div class="content">
+
+            <ul id="pool-list"></ul>
+
+        </div>
+    </p>
+
     <div class="navbar" id="navbar">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
             <li><a href="{% url 'index' %}">Index - Login</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
             <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
+            <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
     </div> 
+
 
     <script>
         // Your web app's Firebase configuration
@@ -28,6 +42,7 @@
         var firebaseConfig = {
             apiKey: "AIzaSyD69dMji8qEyg_72e-JZ8pkLpcWFhboxbg",
             authDomain: "need-chords.firebaseapp.com",
+            databaseURL: "https://need-chords.firebaseio.com",
             projectId: "need-chords",
             storageBucket: "need-chords.appspot.com",
             messagingSenderId: "93635873893",
@@ -36,9 +51,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         console.log(firebase);
-
         const db = firebase.firestore();
-
         db.settings({ timestampsInSnapshot: true });
 
     </script>

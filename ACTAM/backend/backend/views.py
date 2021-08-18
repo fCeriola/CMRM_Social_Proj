@@ -27,22 +27,24 @@ def analyze(request): #post
     if request.method == "POST":
         f = SongForm2(request.POST)
         if(f.is_valid()):
+            print("hereeee")
             artist = f.cleaned_data['artist']
             title = f.cleaned_data['title']
         print("inside chromogram view call")
 
-    nameOfFile = artist + '-' + title + '.wav'
-    print(nameOfFile)
-    chords, timestamps = chromogram_f(nameOfFile)
-    print(chords, timestamps)
-    args = {
-        "f": f,
-        "nameOfFile": nameOfFile,
-        "chords": chords,
-        "timestamps": timestamps
+        nameOfFile = artist + '-' + title + '.wav'
+        print(nameOfFile)
+        chords, timestamps = chromogram_f(nameOfFile)
+        #print(chords, timestamps)
+        args = {
+            "f": f,
+            "nameOfFile": nameOfFile,
+            "chords": chords,
+            "timestamps": timestamps
 
-    }
-    return render(request, 'analyze.html', args)
+        }
+        return render(request, 'analyze.html', args)
+    return render(request, 'analyze.html')
 
 def user_account(request):
     return render(request, "user_account.html")

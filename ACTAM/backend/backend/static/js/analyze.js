@@ -1,5 +1,6 @@
-const poolList = document.querySelector('#pool-list');
-
+//const poolList = document.querySelector('#pool-list');
+const form = document.querySelector('#add-pool-form');
+/*
 // create element & render cafe
 function renderPools(doc){
     let li = document.createElement('li');
@@ -19,23 +20,26 @@ function renderPools(doc){
     poolList.appendChild(li);
     
 }
+*/
 
 // getting data
+/*
 db.collection('Pools').get().then(snapshot => {
     snapshot.docs.forEach(doc => {
         renderPools(doc);
     });
 }); 
+*/
 
 // saving data 
-/*
 form.addEventListener('submit', (callback_event) => {
     callback_event.preventDefault();
-    db.collection('Cafes').add({ //object document
-        Name: form.name.value,
-        City: form.city.value
+    db.collection('Pools').add({ //object document
+        ChordsString: form.chords.value,
+        NameOfSongFile: form.nameOfFile.value,
+        TimestampsInSec: form.timestamps.value
     });
-    form.name.value = '';
-    form.city.value = '';
+    form.chords.value = '';
+    form.nameOfFile.value = '';
+    form.timestamps.value = '';
 });
-*/
