@@ -17,16 +17,26 @@
 </head>
 
 <body>
-
-    <input type="file" id="uploaded_song">
-    <!-- check that it is a .wav file -->
+    
+    <!--<form method="POST" enctype="multipart/form-data" >-->
+        <!--{% csrf_token %}-->
+        <input type="file" id="uploaded_song" name="document">
+        <br><br>
+        <input type="text" id="artist" placeholder="artist" value="">
+        <input type="text" id="title" placeholder="title" value="">
+        <br><br>
+        <button id="upload_button">Upload Audio</button>
+        <label id="process"></label>
+        <br><br>
+    <!--</form> -->
+    
     <br><br>
-    <input type="text" id="artist" placeholder="artist" value="">
-    <input type="text" id="title" placeholder="title" value="">
-    <br><br>
-    <button id="upload_button">Upload Audio</button>
-    <label id="process"></label>
-    <br><br>
+    <form method="POST" enctype="multipart/form-data" action="analyze">
+        {% csrf_token %}
+        {{ in_form.as_p }}
+        <button type="submit" class="btn btn-primary">Analyze</button>
+    </form>
+    <!-- <h2>{{ artist }} {{ title }}</h2> -->
 
     <div class="navbar">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">

@@ -1,8 +1,4 @@
 var uploadButton = document.getElementById("upload_button");
-var audioControls = document.getElementById("audio_controls");
-var output = document.getElementById("output");
-var analyze = document.getElementById("analyze");
-
 
 uploadButton.onclick = function() {
     const myStorage = firebase.storage().ref("Songs/");

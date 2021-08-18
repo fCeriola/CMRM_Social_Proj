@@ -1,14 +1,29 @@
-import os
+from django.forms.widgets import PasswordInput
 import numpy as np
 from matplotlib import pyplot as plt
 import librosa
-
+import os
+from .settings import BASE_DIR
 import sys
 sys.path.append('..')
 import libfmp.b
 import libfmp.c3
 import libfmp.c4
-# %matplotlib inline
+import pyrebase
+
+config = {
+    "apiKey": "AIzaSyD69dMji8qEyg_72e-JZ8pkLpcWFhboxbg",
+    "authDomain": "need-chords.firebaseapp.com",
+    "projectId": "need-chords",
+    "databaseURL": "https://need-chords.firebaseio.com",
+    "storageBucket": "need-chords.appspot.com",
+    "messagingSenderId": "93635873893",
+    "appId": "1:93635873893:web:64c4ea4c5a723fa39c8a8c"
+}
+
+firebase = pyrebase.initialize_app(config)
+
+storage = firebase.storage()
 
 def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=None, version='STFT', norm='2'):
     """Compute chromagram for WAV file specified by filename
@@ -54,14 +69,6 @@ def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=Non
         X = libfmp.c3.normalize_feature_sequence(X, norm='2')
     Fs_X = Fs / H
     return X, Fs_X, x, Fs, x_dur
-
-# Compute chroma features
-#FIX FILE PATH
-fn_wav = os.path.join('data', 'audio', 'Beatles_LetItBe.wav') #update file path
-#fn_wav = "C:/Users/francoa/Documents/MuseScore3/Spartiti/prova.wav" <-- try with your owm local file
-N = 4096
-H = 2048
-X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
 
 def get_chord_labels(ext_minor='m', nonchord=False):
     """Generate chord labels for major and minor triads (and possibly nonchord label)
@@ -128,24 +135,6 @@ def chord_recognition_template(X, norm_sim='1', nonchord=False):
 
     return chord_sim, chord_max
 
-# Chord recognition
-X = X_STFT
-chord_sim, chord_max = chord_recognition_template(X, norm_sim='max', nonchord=False)
-chord_labels = get_chord_labels(nonchord=False)
-
-#Plot
-cmap = libfmp.b.compressed_gray_cmap(alpha=1, reverse=False)
-fig, ax = plt.subplots(2, 2, gridspec_kw={'width_ratios': [1, 0.03], 
-                                          'height_ratios': [0.8, 2.5]}, figsize=(10, 8))
-libfmp.b.plot_signal(x, Fs, ax=ax[0,0], title='Waveform of audio signal')
-libfmp.b.plot_matrix(chord_max, ax=[ax[1, 0], ax[1, 1]], Fs=Fs_X, 
-                     title='Time–chord representation of chord recognition result',
-                     ylabel='Chord', xlabel='Time (Seconds)')
-ax[1, 0].set_yticks(np.arange( len(chord_labels) ))
-ax[1, 0].set_yticklabels(chord_labels)
-ax[1, 0].grid()
-
-# Results as string and timestamps
 def compute_results(chord_max, Fs, chord_labels):
     first_element = np.argmax(chord_max[:,0])
     chord_index = np.array([first_element])
@@ -156,7 +145,7 @@ def compute_results(chord_max, Fs, chord_labels):
         j = np.argmax(chord_max[:,(n-1)])
         if i !=j:
             chord_index = np.append(chord_index, i)
-            timestamps = np.append(timestamps, n/Fs_X)
+            timestamps = np.append(timestamps, round(n/Fs, 3))
     a = []
     for n in range(chord_index.shape[0]):
         element = chord_index[n]
@@ -164,9 +153,38 @@ def compute_results(chord_max, Fs, chord_labels):
     results = np.array(a)
     return results, timestamps
 
-results, timestamp = compute_results(chord_max, Fs, chord_labels)
+def chromogram_f(name_of_file):
+    my_wav = "Songs/" + name_of_file
+    # Compute chroma features
+    saved_file = name_of_file
+    storage.child(my_wav).download(filename=saved_file, path=os.path.join(BASE_DIR, 'backend/media'))
+    fn_wav = "media/" + saved_file
+    print("diocane se non arriva fino a qua smadonno")
+    #fn_wav = "C:/Users/francoa/Documents/SilvioCorsiAutunno/ACTAM/CMRM_Social_Proj/CMRM_Social_Proj/ACTAM/backend/" + saved_file
+    N = 4096
+    H = 2048
+    X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
+    generate_chord_templates()
+    # Chord recognition
+    X = X_STFT
+    chord_sim, chord_max = chord_recognition_template(X, norm_sim='max', nonchord=False)
+    chord_labels = get_chord_labels(nonchord=False)
+    chord_recognition_template(X)
+    get_chord_labels()
+    #Plot
+    # cmap = libfmp.b.compressed_gray_cmap(alpha=1, reverse=False)
+    # fig, ax = plt.subplots(2, 2, gridspec_kw={'width_ratios': [1, 0.03], 
+    #                                       'height_ratios': [0.8, 2.5]}, figsize=(10, 8))
+    # libfmp.b.plot_signal(x, Fs, ax=ax[0,0], title='Waveform of audio signal')
+    # libfmp.b.plot_matrix(chord_max, ax=[ax[1, 0], ax[1, 1]], Fs=Fs_X, 
+    #                  title='Time–chord representation of chord recognition result',
+    #                  ylabel='Chord', xlabel='Time (Seconds)')
+    # ax[1, 0].set_yticks(np.arange( len(chord_labels) ))
+    # ax[1, 0].set_yticklabels(chord_labels)
+    # ax[1, 0].grid()
+    #Saving figure to path
+    #fig.savefig('C:\\Users\\DAVID\\Desktop\\Università\\plot.png') #update this path 
 
-#Saving figure to path
-#fig.savefig('C:\\Users\\DAVID\\Desktop\\Università\\plot.png') #update this path 
-print(results)
-print(timestamp)
+    chords, timestamps = compute_results(chord_max, Fs_X, chord_labels)
+
+    return chords, timestamps
