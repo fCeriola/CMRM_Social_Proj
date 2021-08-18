@@ -29,12 +29,7 @@
                 <img src="{{ image }}" style="width: 100px; margin-top: 10px;" alt="no image">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="logged-in" style="display: none">
-                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-account">myAccount</a>
-                </li>
-                <!-- <li class="logged-in" style="display: none">
-                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-create">Need Chords?</a>
-                </li> -->
+
                 <li class="logged-in" style="display: none">
                     <a href="#" class="aliceblue-text" id="logout">Logout</a>
                 </li>
@@ -47,6 +42,17 @@
             </ul>
         </div>
     </nav>
+
+    <!-- BUTTON INITIAL PAGE -->
+
+    <div class="navbar logged-in">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'upload' %}">Upload</a></li>
+            <li><a href="{% url 'db_posts' %}">Pool</a></li>
+        </ul>
+    </div>
 
     <!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
@@ -84,52 +90,23 @@
         </div>
     </div>
 
-    <!-- ACCOUNT MODAL -->
-    <div id="modal-account" class="modal">
-        <div class="modal-content center-align">
-            <h4>Account details</h4><br />
-            <div class="account-details"><i>Account information and uploaded songs</i></div>
+    <!-- ABOUT -->
+    <div class="logged-out center" style="display: none;">
+        <header>
+            <h1>About "Need Chords ?"</h1>
+        </header>
+
+        <p></p>
+        <div>
+            <p> <b>"Need Chords?"</b> is a web app that allows you to retrieve chords from file. You have only to access with Google, go into the account page and upload a song. Once you have uploaded it, press the "Need Chords" button and the system will
+                automatically give you all the triades with the relative timestamps.
+            </p>
+
+            <p>However, the algorhytm is not perfect, so the system may declare that some chords are imprecise or even wrong. This is how the app become a <b>social media</b>. It is up to you to eventually start a pool, asking to the other connected users
+                to send a feedback. You can also set how many answer you need to complete the pool in the specific format provided.</p>
         </div>
+
     </div>
-
-    <!-- CREATE GUIDE MODAL -->
-    <div id="modal-create" class="modal">
-        <div class="modal-content">
-            <h2>Need Chords?</h2>
-            <h4>Upload and Anlyse a song</h4><br />
-            <form id="create-form">
-                <div class="input-field">
-                    <input type="text" id="title" required>
-                    <label for="title">Song Title</label>
-                </div>
-                <div class="input-field">
-                    <textarea id="content" class="materialize-textarea" required></textarea>
-                    <label for="content">Author</label>
-                </div>
-
-                <button class="btn blue darken-2 z-depth-1">Upload</button>
-                <button class="btn blue darken-2 z-depth-1">Analyse</button>
-            </form>
-        </div>
-    </div>
-
-    <i></i>
-
-    <!-- GUIDE LIST -->
-    <div class="container" style="margin-top: 40px;">
-        <ul class="collapsible z-depth-0 guide" style="border: none;">
-
-        </ul>
-    </div>
-
-    <!-- <div class="navbar">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
-        <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'upload' %}">Upload</a></li>
-            <li><a href="{% url 'db_posts' %}">Pool</a></li>
-        </ul>
-    </div> -->
 
     <script>
         // Your web app's Firebase configuration

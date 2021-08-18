@@ -2,33 +2,13 @@
 //retrieve data only if we are logged in 
 auth.onAuthStateChanged(user => {
     if (user) {
-        db.collection('guides').onSnapshot(snapshot => {
-            setupGuides(snapshot.docs)
-            setupUI(user);
-        });
+        setupUI(user)
     } else {
         setupUI();
-        //empty array if we aren't logged in 
-        setupGuides([]);
     }
 })
 
-//create new guide
-const createForm = document.querySelector('#create-form')
-createForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    db.collection('guides').add({
-        title: createForm['title'].value, //in square bracket is referring to the input field of the form, not to the db 
-        content: createForm['content'].value
-    }).then(() => {
-        //close the modal and reset form
-        const modal = document.querySelector('#modal-create')
-        M.Modal.getInstance(modal).close();
-        createForm.reset();
-    }).catch(err => {
-        console.log(err.message)
-    })
-})
+
 
 //signup form
 const signupForm = document.querySelector('#signup-form');
@@ -66,8 +46,9 @@ loginForm.addEventListener('submit', (e) => {
     auth.signInWithEmailAndPassword(email, password).then(cred => {
         const modal = document.querySelector('#modal-login')
         M.Modal.getInstance(modal).close();
-        signupForm.reset();
+        loginForm.reset();
+    }).catch(err => {
+        alert(err.message)
     })
-
 
 })
