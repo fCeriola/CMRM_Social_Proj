@@ -37,8 +37,7 @@ def analyze(request): #post
     print(chords, timestamps)
     args = {
         "f": f,
-        "artist": artist,
-        "title": title,
+        "nameOfFile": nameOfFile,
         "chords": chords,
         "timestamps": timestamps
 

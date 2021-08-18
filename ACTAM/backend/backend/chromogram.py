@@ -3,6 +3,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 import librosa
 import os
+
+from pyasn1_modules.rfc2459 import DirectoryString
 from .settings import BASE_DIR
 import sys
 sys.path.append('..')
@@ -155,12 +157,14 @@ def compute_results(chord_max, Fs, chord_labels):
 
 def chromogram_f(name_of_file):
     my_wav = "Songs/" + name_of_file
+    path =  os.path.join(BASE_DIR, '/backend/')
+    print(path)
+    my_path = path.replace('\\', '/')
+    print(my_path)
+    storage.child(my_wav).download(filename=name_of_file, path=my_path)
     # Compute chroma features
-    saved_file = name_of_file
-    storage.child(my_wav).download(filename=saved_file, path=os.path.join(BASE_DIR, 'backend/media'))
-    fn_wav = "media/" + saved_file
-    print("diocane se non arriva fino a qua smadonno")
-    #fn_wav = "C:/Users/francoa/Documents/SilvioCorsiAutunno/ACTAM/CMRM_Social_Proj/CMRM_Social_Proj/ACTAM/backend/" + saved_file
+    fn_wav = my_path + name_of_file
+    print("diocane se non arriva fino a qua smadonno", fn_wav)
     N = 4096
     H = 2048
     X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
@@ -183,7 +187,8 @@ def chromogram_f(name_of_file):
     # ax[1, 0].set_yticklabels(chord_labels)
     # ax[1, 0].grid()
     #Saving figure to path
-    #fig.savefig('C:\\Users\\DAVID\\Desktop\\Università\\plot.png') #update this path 
+    # fig.savefig(my_path + '/plot.png')
+    # print(fig.name, fig.bytes)
 
     chords, timestamps = compute_results(chord_max, Fs_X, chord_labels)
 

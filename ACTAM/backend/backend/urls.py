@@ -30,4 +30,6 @@ urlpatterns = [
     path('user_account/', views.user_account, name="user_account"),
     path('upload/analyze', views.analyze, name="analyze"),
     path('db_posts_temp/', views.db_posts_temp, name="db_posts_temp"),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] 
+
+#+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
