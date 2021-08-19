@@ -19,8 +19,6 @@
 
 <body>
 
-    <!--<form method="POST" enctype="multipart/form-data" >-->
-    <!--{% csrf_token %}-->
     <input type="file" id="uploaded_song" name="document">
     <br><br>
     <input type="text" id="artist" placeholder="artist" value="">
@@ -29,43 +27,24 @@
     <button id="upload_button">Upload Audio</button>
     <label id="process"></label>
     <br><br>
-    <!--</form> -->
 
     <br><br>
+    <!-- the form below must be visible only after upload progress is completed -->
     <form method="POST" enctype="multipart/form-data" action="analyze">
         {% csrf_token %} {{ in_form.as_p }}
         <button type="submit" class="btn btn-primary">Analyze</button>
     </form>
-    <!-- <h2>{{ artist }} {{ title }}</h2> -->
 
     <div class="navbar">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
-            <li>
-                <a href="{% url 'index' %}">Home</a>
-            </li>
+            <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
-            <li><a href="{% url 'db_posts' %}">Pool</a></li>
+            <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
         </ul>
     </div>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyD69dMji8qEyg_72e-JZ8pkLpcWFhboxbg",
-            authDomain: "need-chords.firebaseapp.com",
-            projectId: "need-chords",
-            storageBucket: "need-chords.appspot.com",
-            messagingSenderId: "93635873893",
-            appId: "1:93635873893:web:64c4ea4c5a723fa39c8a8c"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true })
-        console.log(firebase);
-    </script>
-
+    <script src="{% static 'js/firebase_config.js'%}"></script>
     <script src="{% static 'js/upload.js'%}"></script>
 
 

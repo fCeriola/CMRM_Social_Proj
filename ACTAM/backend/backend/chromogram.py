@@ -3,7 +3,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 import librosa
 import os
-
 from pyasn1_modules.rfc2459 import DirectoryString
 from .settings import BASE_DIR
 import sys
@@ -20,11 +19,9 @@ config = {
     "databaseURL": "https://need-chords.firebaseio.com",
     "storageBucket": "need-chords.appspot.com",
     "messagingSenderId": "93635873893",
-    "appId": "1:93635873893:web:64c4ea4c5a723fa39c8a8c"
-}
+    "appId": "1:93635873893:web:64c4ea4c5a723fa39c8a8c" }
 
 firebase = pyrebase.initialize_app(config)
-
 storage = firebase.storage()
 database = firebase.database()
 
@@ -166,7 +163,7 @@ def chromogram_f(name_of_file):
     storage.child(my_wav).download(filename=name_of_file, path=my_path)
     # Compute chroma features
     fn_wav = my_path + name_of_file
-    print("fn_wav status: ok")
+    print("fn_wav status: ok \nanalyzing...")
     N = 4096
     H = 2048
     X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')

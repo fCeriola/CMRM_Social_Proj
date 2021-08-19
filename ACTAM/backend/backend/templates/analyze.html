@@ -28,6 +28,7 @@
                 <input type="text" name="timestamps" placeholder="timestamps">
                 <button>Add New Pool</button>
             </form>
+            <label id="process"></label>
             
 
         </div>
@@ -39,32 +40,12 @@
         <ul>
             <li><a href="{% url 'index' %}">Index - Login</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
-            <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
-            <li><a href="{% url 'db_posts_temp' %}">cloud cafe</a></li>
+            <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
             <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
     </div> 
 
-
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyD69dMji8qEyg_72e-JZ8pkLpcWFhboxbg",
-            authDomain: "need-chords.firebaseapp.com",
-            databaseURL: "https://need-chords.firebaseio.com",
-            projectId: "need-chords",
-            storageBucket: "need-chords.appspot.com",
-            messagingSenderId: "93635873893",
-            appId: "1:93635873893:web:64c4ea4c5a723fa39c8a8c"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        console.log(firebase);
-        const db = firebase.firestore();
-        db.settings({ timestampsInSnapshot: true });
-
-    </script>
+    <script src="{% static 'js/firebase_config.js'%}"></script>
 
     <script src="{% static 'js/analyze.js'%}"></script>
 

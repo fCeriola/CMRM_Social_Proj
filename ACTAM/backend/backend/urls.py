@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from backend import settings, views
+from backend import views
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -25,11 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
     path('index/', views.index, name="index"),
-    path('db_posts/', views.db_posts, name="db_posts"),
     path('upload/', views.upload, name="upload"),
     path('user_account/', views.user_account, name="user_account"),
     path('upload/analyze', views.analyze, name="analyze"),
     path('db_posts_temp/', views.db_posts_temp, name="db_posts_temp"),
 ] 
-
-#+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
