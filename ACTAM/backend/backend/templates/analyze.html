@@ -5,7 +5,7 @@
 
 <head>
     <title>analyze results</title>
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css'%}"> -->
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/db_posts_temp.css'%}">-->
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
@@ -23,12 +23,14 @@
         <p>
             <ol>
                 {% for c in c_vett %}
-                <li>
-                    {{ }} - {{c}}
-                    <button>change chord</button>
-                </li>
-                {% endfor %} {% endfor %}
+                        <li>
+                            {{ }} - {{c}}
+                            <button>change chord</button>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
             </ol>
+
 
         </p>
     </div>

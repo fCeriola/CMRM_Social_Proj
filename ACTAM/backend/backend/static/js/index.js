@@ -14,21 +14,33 @@ const setupUI = (user) => {
 }
 
 
-
-//set logo image
-mediaStorage.child('logo.png').getDownloadURL().then((url) => {
-    var img = document.getElementById('image-box');
+//set images
+//navbar 
+mediaStorage.child('ncw.png').getDownloadURL().then((url) => {
+    var img = document.getElementById('navbar-img');
     img.setAttribute('src', url)
 });
+
+//index 
+mediaStorage.child('ncb.png').getDownloadURL().then((url) => {
+    var img = document.getElementById('index-img');
+    img.setAttribute('src', url)
+});
+// //favicon
+// mediaStorage.child('nc.png').getDownloadURL().then((url) => {
+//     var img = document.getElementById('favicon');
+//     img.setAttribute('src', url)
+// });
+
 
 
 //PROVA PER VEDERE SE TRAMITE LINK FUNZIONA---->sarà dinamico
 //set audio
-songsStorage.child('poi-poi.wav').getDownloadURL().then((url) => {
-    var song = document.getElementById('prova-audio');
-    song.setAttribute('src', url)
-    console.log(url);
-})
+// songsStorage.child('poi-poi.wav').getDownloadURL().then((url) => {
+//     var song = document.getElementById('prova-audio');
+//     song.setAttribute('src', url)
+//     console.log(url);
+// })
 
 
 

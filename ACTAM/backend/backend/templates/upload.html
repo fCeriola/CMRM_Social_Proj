@@ -48,13 +48,14 @@
     </div>
 
     <div class="content">
+
         <!-- the form below must be visible only after upload progress is completed -->
         <form method="POST" enctype="multipart/form-data" action="analyze">
             {% csrf_token %} {{ in_form.as_p }}
             <button type="submit" class="btn btn-primary">Analyze</button>
         </form>
     </div>
-    <div class="navbar">
+    <div class="navbar center" style="margin: 0 auto; ">
         <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
