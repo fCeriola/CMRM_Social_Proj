@@ -42,10 +42,7 @@
         </div>
     </nav>
 
-    <script>
-        var logo = document.querySelector()
-        const myStorage = firebase.storage().ref("media/");
-    </script>
+    <p id="image"></p>
 
     <!-- BUTTON INITIAL PAGE -->
 
@@ -112,26 +109,10 @@
 
     </div>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyD69dMji8qEyg_72e-JZ8pkLpcWFhboxbg",
-            authDomain: "need-chords.firebaseapp.com",
-            projectId: "need-chords",
-            storageBucket: "need-chords.appspot.com",
-            messagingSenderId: "93635873893",
-            appId: "1:93635873893:web:64c4ea4c5a723fa39c8a8c"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        db.settings({
-                timestampsInSnapshots: true
-            }) //no error or warning in console
-    </script>
+
 
     <!-- Compiled and minified JavaScript -->
+    <script src="{% static 'js/firebase_config.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{% static 'js/auth.js'%}"></script>
     <script src="{% static 'js/index.js'%}"></script>
