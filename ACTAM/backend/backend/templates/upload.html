@@ -7,7 +7,7 @@
 
     <title>Upload file to Firestore</title>
 
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css'%}"> -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
@@ -18,23 +18,42 @@
 </head>
 
 <body>
+    <nav class="z-depth-3 blue lighten-1">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" id="logo">
+                <img src='' id="image-box" style="width: 100px; margin-top: 10px;">
+            </a>
+            <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-    <input type="file" id="uploaded_song" name="document">
-    <br><br>
-    <input type="text" id="artist" placeholder="artist" value="">
-    <input type="text" id="title" placeholder="title" value="">
-    <br><br>
-    <button id="upload_button">Upload Audio</button>
-    <label id="process"></label>
-    <br><br>
+                <li class="logged-in" style="display: none">
+                    <a href="#" class="aliceblue-text" id="logout">Logout</a>
+                </li>
+                <li class="logged-out" style="display: none">
+                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-login">Login</a>
+                </li>
+                <li class="logged-out" style="display: none">
+                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-signup">Sign up</a>
+                </li>
+            </ul> -->
+        </div>
+    </nav>
+    <div class="content">
+        <input type="file" id="uploaded_song" name="document">
+        <br><br>
+        <input type="text" id="artist" placeholder="artist" value="">
+        <input type="text" id="title" placeholder="title" value="">
+        <br><br>
+        <button id="upload_button">Upload Audio</button>
+        <label id="process"></label>
+    </div>
 
-    <br><br>
-    <!-- the form below must be visible only after upload progress is completed -->
-    <form method="POST" enctype="multipart/form-data" action="analyze">
-        {% csrf_token %} {{ in_form.as_p }}
-        <button type="submit" class="btn btn-primary">Analyze</button>
-    </form>
-
+    <div class="content">
+        <!-- the form below must be visible only after upload progress is completed -->
+        <form method="POST" enctype="multipart/form-data" action="analyze">
+            {% csrf_token %} {{ in_form.as_p }}
+            <button type="submit" class="btn btn-primary">Analyze</button>
+        </form>
+    </div>
     <div class="navbar">
         <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
         <ul>
