@@ -154,3 +154,8 @@ button {
     letter-spacing: 1px;
     color: #999;
 }
+
+.navbuttons {
+    position: absolute;
+    left: 70%;
+}

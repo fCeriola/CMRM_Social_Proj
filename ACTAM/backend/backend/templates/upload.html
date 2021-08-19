@@ -21,22 +21,18 @@
     <nav class="z-depth-3 blue lighten-1">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo" id="logo">
-                <img src='' id="image-box" style="width: 100px; margin-top: 10px;">
+                <img src='' id="image-box" style="width: 100px; margin-top: 10px;" alt="logo">
             </a>
-            <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
-
-                <li class="logged-in" style="display: none">
-                    <a href="#" class="aliceblue-text" id="logout">Logout</a>
-                </li>
-                <li class="logged-out" style="display: none">
-                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-login">Login</a>
-                </li>
-                <li class="logged-out" style="display: none">
-                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-signup">Sign up</a>
-                </li>
-            </ul> -->
+            <div class="navbuttons logged-in">
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'upload' %}">Upload</a></li>
+                    <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
+
     <div class="content">
         <input type="file" id="uploaded_song" name="document">
         <br><br>

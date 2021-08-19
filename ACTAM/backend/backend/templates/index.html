@@ -24,14 +24,19 @@
     <!-- NAVBAR -->
     <nav class="z-depth-3 blue lighten-1">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo" id="logo" style="margin-top: 0%;">
-                <img src='' id="navbar-img" style="width: 150px; object-fit: cover; position: relative; margin-top: 0%;">
+            <a href="#" class="brand-logo" id="logo">
+                <img src='' id="image-box" style="width: 100px; margin-top: 10px;" alt="logo">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-
-                <li class="logged-in" style="display: none">
-                    <a href="#" class="aliceblue-text" id="logout">Logout</a>
-                </li>
+                <div class="navbutton logged-in" style="display: none">
+                    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+                    <ul>
+                        <li><a href="{% url 'upload' %}">Upload</a></li>
+                        <li><a href="{% url 'db_posts_temp' %}">Pool</a></li>
+                        <li><a href="{% url 'user_account' %}">myAccount</a></li>
+                        <li><a href="#" class="aliceblue-text" id="logout">Logout</a></li>
+                    </ul>
+                </div>
                 <li class="logged-out" style="display: none">
                     <a href="#" class="aliceblue-text modal-trigger" data-target="modal-login">Login</a>
                 </li>
@@ -40,11 +45,10 @@
                 </li>
             </ul>
         </div>
-    </nav>
 
 
-    <!-- PROVA PLAYER AUDIO TRAMITE LINK -->
-    <!-- <audio controls id="prova-audio" class="logged-in">
+        <!-- PROVA PLAYER AUDIO TRAMITE LINK -->
+        <!-- <audio controls id="prova-audio" class="logged-in">
         <source src='' type="audio/wav">
     </audio> -->
 
@@ -53,79 +57,79 @@
 
 
 
-    <!-- SIGN UP MODAL -->
-    <div id="modal-signup" class="modal">
-        <div class="modal-content">
-            <h4>Sign up</h4><br />
-            <form id="signup-form">
-                <div class="input-field">
-                    <input type="email" id="signup-email" required />
-                    <label for="signup-email">Email address</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="signup-password" required />
-                    <label for="signup-password">Choose password</label>
-                </div>
-                <button class="btn blue darken-2 z-depth-0">Sign up</button>
-            </form>
+        <!-- SIGN UP MODAL -->
+        <div id="modal-signup" class="modal">
+            <div class="modal-content">
+                <h4>Sign up</h4><br />
+                <form id="signup-form">
+                    <div class="input-field">
+                        <input type="email" id="signup-email" required />
+                        <label for="signup-email">Email address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="signup-password" required />
+                        <label for="signup-password">Choose password</label>
+                    </div>
+                    <button class="btn blue darken-2 z-depth-0">Sign up</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <!-- LOGIN MODAL -->
-    <div id="modal-login" class="modal">
-        <div class="modal-content">
-            <h4>Login</h4><br />
-            <form id="login-form">
-                <div class="input-field">
-                    <input type="email" id="login-email" required />
-                    <label for="login-email">Email address</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="login-password" required />
-                    <label for="login-password">Your password</label>
-                </div>
-                <button class="btn blue darken-2 z-depth-1">Login</button>
-            </form>
+        <!-- LOGIN MODAL -->
+        <div id="modal-login" class="modal">
+            <div class="modal-content">
+                <h4>Login</h4><br />
+                <form id="login-form">
+                    <div class="input-field">
+                        <input type="email" id="login-email" required />
+                        <label for="login-email">Email address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="login-password" required />
+                        <label for="login-password">Your password</label>
+                    </div>
+                    <button class="btn blue darken-2 z-depth-1">Login</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="content">
-        <img src="" alt="Need Chords?" id="index-img" style="width: 70%; margin: 0 auto;" class="center logged-in">
-        <!-- ABOUT -->
-        <div class=" logged-out center" style="display: none; ">
-            <header>
-                <h1>About "Need Chords ? "</h1>
-            </header>
+        <div class="content">
+            <img src="" alt="Need Chords?" id="index-img" style="width: 70%; margin: 0 auto;" class="center logged-in">
+            <!-- ABOUT -->
+            <div class=" logged-out center" style="display: none; ">
+                <header>
+                    <h1>About "Need Chords ? "</h1>
+                </header>
 
-            <p></p>
-            <div>
-                <p> <b>"Need Chords? "</b> is a web app that allows you to retrieve chords from a file. You only have to access with Google, go into the account page and upload a song. Once you have uploaded it, press the "Need Chords " button and the system
-                    will automatically give you all the triads with the relative timestamps.
-                </p>
+                <p></p>
+                <div>
+                    <p> <b>"Need Chords? "</b> is a web app that allows you to retrieve chords from a file. You only have to access with Google, go into the account page and upload a song. Once you have uploaded it, press the "Need Chords " button and the
+                        system will automatically give you all the triads with the relative timestamps.
+                    </p>
 
-                <p>However, the algorithm is not perfect, so the system may declare some chords that are imprecise or even wrong. This is how the app becomes a <b>social media</b>. It is up to you to eventually start a pool, asking to the other connected
-                    users to send a feedback. You can also set how many answer you need to complete the pool in the specific format provided.</p>
+                    <p>However, the algorithm is not perfect, so the system may declare some chords that are imprecise or even wrong. This is how the app becomes a <b>social media</b>. It is up to you to eventually start a pool, asking to the other connected
+                        users to send a feedback. You can also set how many answer you need to complete the pool in the specific format provided.</p>
+                </div>
+
             </div>
 
+            <!-- BUTTON INITIAL PAGE -->
+            <div class="navbar center container" style="margin: 0 auto; ">
+                <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
+                <ul>
+                    <li style="padding: 5%;"><a href="{% url 'upload' %}">Upload</a></li>
+                    <li style="padding: 5%;"><a href="{% url 'db_posts_temp' %}">Pools</a></li>
+                    <li style="padding: 5%;"><a href="{% url 'user_account' %}">myAccount</a></li>
+                </ul>
+            </div>
         </div>
 
-        <!-- BUTTON INITIAL PAGE -->
-        <div class="navbar center container" style="margin: 0 auto; ">
-            <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
-            <ul>
-                <li style="padding: 5%;"><a href="{% url 'upload' %}">Upload</a></li>
-                <li style="padding: 5%;"><a href="{% url 'db_posts_temp' %}">Pools</a></li>
-                <li style="padding: 5%;"><a href="{% url 'user_account' %}">myAccount</a></li>
-            </ul>
-        </div>
-    </div>
 
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="{% static 'js/firebase_config.js'%} "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
-    <script src="{% static 'js/auth.js'%} "></script>
-    <script src="{% static 'js/index.js'%} "></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="{% static 'js/firebase_config.js'%} "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+        <script src="{% static 'js/auth.js'%} "></script>
+        <script src="{% static 'js/index.js'%} "></script>
 
 
 
