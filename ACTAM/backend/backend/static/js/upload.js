@@ -1,7 +1,6 @@
 var uploadButton = document.getElementById("upload_button");
 
 uploadButton.onclick = function() {
-    const myStorage = firebase.storage().ref("Songs/");
 
     const uploadedFile = document.querySelector("#uploaded_song").files[0];
 
@@ -11,11 +10,10 @@ uploadButton.onclick = function() {
         contentType: nameOfFile.type
     }
 
-    const task = myStorage.child(nameOfFile).put(uploadedFile, metadata);
+    const task = songsStorage.child(nameOfFile).put(uploadedFile, metadata);
 
     task.on('state_changed', function(snapshot) {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         document.getElementById("process").innerHTML = "Uploading..." + progress.toFixed(2) + "%";
     });
-
 }

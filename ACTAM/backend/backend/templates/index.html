@@ -25,7 +25,7 @@
     <nav class="z-depth-3 blue lighten-1">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo" id="logo">
-                <img src="https://firebasestorage.googleapis.com/v0/b/need-chords.appspot.com/o/Media%2FLogo_Politecnico_Milano.png?alt=media&token=92b0a631-c6df-4eac-9cba-1306bd3849d3" style="width: 100px; margin-top: 10px;" alt="no image">
+                <img src='' id="image-box" style="width: 100px; margin-top: 10px;">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -42,7 +42,12 @@
         </div>
     </nav>
 
-    <p id="image"></p>
+    <!-- PROVA PLAYER AUDIO TRAMITE LINK -->
+    <audio controls id="prova-audio" class="logged-in">
+        <source src='' type="audio/wav">
+    </audio>
+
+
 
     <!-- BUTTON INITIAL PAGE -->
 
@@ -50,7 +55,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
             <li><a href="{% url 'upload' %}">Upload</a></li>
-            <li><a href="{% url 'db_posts' %}">Pool</a></li>
+            <li><a href="{% url 'db_posts_temp' %}">Pool</a></li>
             <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
     </div>

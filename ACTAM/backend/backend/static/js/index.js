@@ -15,6 +15,23 @@ const setupUI = (user) => {
 
 
 
+//set logo image
+mediaStorage.child('logo.png').getDownloadURL().then((url) => {
+    var img = document.getElementById('image-box');
+    img.setAttribute('src', url)
+});
+
+
+//PROVA PER VEDERE SE TRAMITE LINK FUNZIONA---->sarà dinamico
+//set audio
+songsStorage.child('poi-poi.wav').getDownloadURL().then((url) => {
+    var song = document.getElementById('prova-audio');
+    song.setAttribute('src', url)
+    console.log(url);
+})
+
+
+
 // setup materialize components
 document.addEventListener('DOMContentLoaded', function() {
 
