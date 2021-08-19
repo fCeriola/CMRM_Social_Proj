@@ -18,6 +18,19 @@
         <h1>analyze page</h1><br>
         <h2>{{ nameOfFile }}</h2> <br>
         <p>{{ chords }} <br>{{ timestamps }} <br></p>
+        <p>{{ c_vett }} <br>{{ t_vett }} <br></p>
+        <p>
+            <ol>
+                {% for c in c_vett %}
+                        <li>
+                            {{ }} - {{c}}
+                            <button>change chord</button>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ol>
+
+        </p>
     </div>
     <br>
     <p>
@@ -33,10 +46,11 @@
 
         </div>
     </p>
+    <h2>essegio quesot</h2>
     <br><br>
 
     <div class="navbar" id="navbar">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
         <ul>
             <li><a href="{% url 'index' %}">Index - Login</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>

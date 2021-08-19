@@ -34,18 +34,22 @@ db.collection('Pools').get().then(snapshot => {
 // saving data 
 form.addEventListener('submit', (callback_event) => {
     callback_event.preventDefault();
-    const task = db.collection('Pools').add({ //object document
-                                                ChordsString: form.chords.value,
-                                                NameOfSongFile: form.nameOfFile.value,
-                                                TimestampsInSec: form.timestamps.value
-                                            });
-
-    task.on('state_changed', function(snapshot) {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        document.getElementById("process").innerHTML = "Uploading..." + progress.toFixed(2) + "%";
+    /*const task = db.collection('Pools').add({ //object document
+        ChordsString: form.chords.value,
+        NameOfSongFile: form.nameOfFile.value,
+        TimestampsInSec: form.timestamps.value
+    });*/
+    const task = db.collection('Posts').add({ //object document
+        Chords: form.chords.value,
+        NameOfSongFile: form.nameOfFile.value,
+        Timestamps_in_sec: form.timestamps.value
     });
-    
+
     form.chords.value = '';
     form.nameOfFile.value = '';
     form.timestamps.value = '';
+
+    task.then(alert("Pool has been created"));
+        
+    
 });

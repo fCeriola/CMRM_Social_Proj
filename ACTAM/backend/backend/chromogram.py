@@ -202,5 +202,4 @@ def chromogram_f(name_of_file):
     #     "TimestampsInSec": timestamps_s
     # }
     # print(a_post)
-
-    return chords_s, timestamps_s
+    return chords_s, timestamps_s, chords, timestamps
