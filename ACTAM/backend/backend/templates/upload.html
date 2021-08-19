@@ -20,14 +20,15 @@
 <body>
     <nav class="z-depth-3 blue lighten-1">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo" id="logo">
-                <img src='' id="image-box" style="width: 100px; margin-top: 10px;" alt="logo">
+            <a href="#" class="brand-logo" id="logo" style="margin-top: 0%;">
+                <img src='' id="navbar-img" style="width: 150px; object-fit: cover; position: relative; margin-top: 0%;">
             </a>
-            <div class="navbuttons logged-in">
+            <div class="navbuttons">
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'upload' %}">Upload</a></li>
+                    <li><a href="{% url 'user_account' %}">myAccount</a></li>
                     <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
+                    <!-- <li><a href="{% url 'index' %}" class="aliceblue-text" id="logout">Logout</a></li> -->
                 </ul>
             </div>
         </div>
@@ -52,7 +53,6 @@
         </form>
     </div>
     <div class="navbar center" style="margin: 0 auto; ">
-        <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
