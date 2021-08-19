@@ -8,6 +8,7 @@
     <title>Upload file to Firestore</title>
 
     <link rel="stylesheet" href="{% static 'css/upload.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
@@ -17,23 +18,22 @@
 </head>
 
 <body>
-    
+
     <!--<form method="POST" enctype="multipart/form-data" >-->
-        <!--{% csrf_token %}-->
-        <input type="file" id="uploaded_song" name="document">
-        <br><br>
-        <input type="text" id="artist" placeholder="artist" value="">
-        <input type="text" id="title" placeholder="title" value="">
-        <br><br>
-        <button id="upload_button">Upload Audio</button>
-        <label id="process"></label>
-        <br><br>
+    <!--{% csrf_token %}-->
+    <input type="file" id="uploaded_song" name="document">
+    <br><br>
+    <input type="text" id="artist" placeholder="artist" value="">
+    <input type="text" id="title" placeholder="title" value="">
+    <br><br>
+    <button id="upload_button">Upload Audio</button>
+    <label id="process"></label>
+    <br><br>
     <!--</form> -->
-    
+
     <br><br>
     <form method="POST" enctype="multipart/form-data" action="analyze">
-        {% csrf_token %}
-        {{ in_form.as_p }}
+        {% csrf_token %} {{ in_form.as_p }}
         <button type="submit" class="btn btn-primary">Analyze</button>
     </form>
     <!-- <h2>{{ artist }} {{ title }}</h2> -->
@@ -41,9 +41,11 @@
     <div class="navbar">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
-            <li><a href="{% url 'index' %}">Index - Login</a></li>
+            <li>
+                <a href="{% url 'index' %}">Home</a>
+            </li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
-            <li><a href="{% url 'db_posts' %}">cloud cafe</a></li>
+            <li><a href="{% url 'db_posts' %}">Pool</a></li>
         </ul>
     </div>
 

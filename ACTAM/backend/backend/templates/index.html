@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Auth test</title>
+    <title>Need Chords?</title>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
@@ -18,15 +18,14 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
 
     <!-- <link rel="stylesheet" href="{% static 'css/index.css'%}"> -->
-
 </head>
 
 <body class="grey lighten-3">
     <!-- NAVBAR -->
     <nav class="z-depth-3 blue lighten-1">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">
-                <img src="{{ image }}" style="width: 100px; margin-top: 10px;" alt="no image">
+            <a href="#" class="brand-logo" id="logo">
+                <img src="https://firebasestorage.googleapis.com/v0/b/need-chords.appspot.com/o/Media%2FLogo_Politecnico_Milano.png?alt=media&token=92b0a631-c6df-4eac-9cba-1306bd3849d3" style="width: 100px; margin-top: 10px;" alt="no image">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -43,14 +42,19 @@
         </div>
     </nav>
 
+    <script>
+        var logo = document.querySelector()
+        const myStorage = firebase.storage().ref("media/");
+    </script>
+
     <!-- BUTTON INITIAL PAGE -->
 
     <div class="navbar logged-in">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
             <li><a href="{% url 'db_posts' %}">Pool</a></li>
+            <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
     </div>
 

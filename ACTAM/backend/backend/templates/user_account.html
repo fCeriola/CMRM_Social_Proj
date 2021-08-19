@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 
 <head>
     <title>Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
 <body>
@@ -19,7 +21,15 @@
         }
     </style>
 
+    <div class="navbar logged-in">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'upload' %}">Upload</a></li>
+            <li><a href="{% url 'db_posts' %}">Pool</a></li>
 
+        </ul>
+    </div>
 
 
 </body>
