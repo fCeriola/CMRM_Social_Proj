@@ -1,35 +1,14 @@
 //const poolList = document.querySelector('#pool-list');
 const form = document.querySelector('#add-pool-form');
-/*
-// create element & render cafe
-function renderPools(doc){
-    let li = document.createElement('li');
-    let ChordsString = document.createElement('span');
-    let NameOfSongFile = document.createElement('span');
-    let TimestampsInSec = document.createElement('span'); 
+//const chords_array = document.querySelector('#a_var');
+const newChordOption = document.getElementById("newChord");
+const doubtChordcheckBox = document.getElementById("doubtChord");
 
-    li.setAttribute('data-id', doc.id);
-    ChordsString.textContent = doc.data().ChordsString;
-    NameOfSongFile.textContent = doc.data().NameOfSongFile;
-    TimestampsInSec.textContent = doc.data().TimestampsInSec;
+//newChord[newChord.selcetedIndex]
 
-    li.appendChild(ChordsString);
-    li.appendChild(NameOfSongFile);
-    li.appendChild(TimestampsInSec);
+doubtChordcheckBox.onclick = function (){
 
-    poolList.appendChild(li);
-    
 }
-*/
-
-// getting data
-/*
-db.collection('Pools').get().then(snapshot => {
-    snapshot.docs.forEach(doc => {
-        renderPools(doc);
-    });
-}); 
-*/
 
 // saving data 
 form.addEventListener('submit', (callback_event) => {
@@ -50,6 +29,4 @@ form.addEventListener('submit', (callback_event) => {
     form.timestamps.value = '';
 
     task.then(alert("Pool has been created"));
-        
-    
 });

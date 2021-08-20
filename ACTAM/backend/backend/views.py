@@ -25,19 +25,21 @@ def analyze(request): #post
 
         nameOfFile = artist + '-' + title + '.wav'
         #print(nameOfFile)
-        chords, timestamps, c_vett, t_vett = chromogram_f(nameOfFile)
+        chords, timestamps, c_string, t_string = chromogram_f(nameOfFile)
         #print(chords, timestamps)
+        results = {
+            "c": chords,
+            "t": timestamps,
+            "c_s": c_string,
+            "t_s": t_string
+        }
         args = {
             "f": f,
             "nameOfFile": nameOfFile,
-            "chords": chords,
-            "timestamps": timestamps,
-            "c_vett": c_vett,
-            "t_vett": t_vett
-
+            "r": results
         }
         return render(request, 'analyze.html', args)
-    return render(request, 'analyze.html')
+    return render(request, 'upload.html')
 
 def user_account(request):
     return render(request, "user_account.html")

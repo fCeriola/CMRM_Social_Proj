@@ -14,26 +14,58 @@
 </head>
 
 <body>
-
-    <div class="theheader">
-        <h1>analyze page</h1><br>
+    <h1>analyze page</h1>
+    <!--<div class="theheader">
+        <br>
         <h2>{{ nameOfFile }}</h2> <br>
         <p>{{ chords }} <br>{{ timestamps }} <br></p>
         <p>{{ c_vett }} <br>{{ t_vett }} <br></p>
+        <span id="a_var">{{ variable }}</span>
         <p>
             <ol>
                 {% for c in c_vett %}
                         <li>
-                            {{ }} - {{c}}
+                            - {{c}}
                             <button>change chord</button>
                         </li>
-                    {% endfor %}
                 {% endfor %}
             </ol>
-
-
         </p>
     </div>
+    -->
+    
+    <h2>Results for: "{{ nameOfFile }}"</h2>
+    <h3>len( {{r.c}} )</h3>
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th>Chord number</th>
+                <th>Timestamp</th>
+                <th>Chord Name</th>
+                <th>Change Chord</th>
+                <th>Flag as Doubt</th>
+            </tr>
+        </thead>
+            <!--
+        <tbody>
+            {% for index in range(len( {{r.c}} )) %}
+                <tr>
+                    <td>index</td>
+                    <td>r.t[index]</td>
+                    <td>r.c[index]</td>
+                    <td><select name="newChord" id="newChord">
+                            <option value="C">C</option>
+                            <option value="Cmin">Cmin</option>
+                            <option value="C# / Db">C# / Db</option>
+                            <option value="C# / Db">C#min / Dbmin</option>
+                      </select>
+                    </td>
+                    <td><input type="checkbox" id="doubtChord"></td>
+                </tr>
+            {% endfor %}
+        </tbody> -->
+    </table>
+
     <br>
     <p>
         <div class="content">
@@ -43,13 +75,9 @@
                 <input type="text" name="timestamps" placeholder="timestamps">
                 <button>Add New Pool</button>
             </form>
-            <label id="process"></label>
-
 
         </div>
     </p>
-    <h2>essegio quesot</h2>
-    <br><br>
 
     <div class="navbar" id="navbar">
         <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
