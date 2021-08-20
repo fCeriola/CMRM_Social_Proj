@@ -15,27 +15,8 @@
 
 <body>
     <h1>analyze page</h1>
-    <!--<div class="theheader">
-        <br>
-        <h2>{{ nameOfFile }}</h2> <br>
-        <p>{{ chords }} <br>{{ timestamps }} <br></p>
-        <p>{{ c_vett }} <br>{{ t_vett }} <br></p>
-        <span id="a_var">{{ variable }}</span>
-        <p>
-            <ol>
-                {% for c in c_vett %}
-                        <li>
-                            - {{c}}
-                            <button>change chord</button>
-                        </li>
-                {% endfor %}
-            </ol>
-        </p>
-    </div>
-    -->
     
     <h2>Results for: "{{ nameOfFile }}"</h2>
-    <h3>len( {{r.c}} )</h3>
     <table class="table mb-0">
         <thead>
             <tr>
@@ -46,13 +27,19 @@
                 <th>Flag as Doubt</th>
             </tr>
         </thead>
-            <!--
+
         <tbody>
-            {% for index in range(len( {{r.c}} )) %}
+            {% for i in r.c %}
                 <tr>
-                    <td>index</td>
-                    <td>r.t[index]</td>
-                    <td>r.c[index]</td>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        {% for j in r.t %}
+                            {% if forloop.counter == forloop.parentloop.counter %}
+                                {{j}}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ i }}</td>
                     <td><select name="newChord" id="newChord">
                             <option value="C">C</option>
                             <option value="Cmin">Cmin</option>
@@ -63,16 +50,16 @@
                     <td><input type="checkbox" id="doubtChord"></td>
                 </tr>
             {% endfor %}
-        </tbody> -->
+        </tbody>
     </table>
 
     <br>
     <p>
-        <div class="content">
+        <div class="content"><h3>Auto-generated Pool</h3>
             <form id="add-pool-form">
-                <input type="text" name="chords" placeholder="chords">
-                <input type="text" name="nameOfFile" placeholder="nameOfFile">
-                <input type="text" name="timestamps" placeholder="timestamps">
+                <input type="text" name="chords" id="chordss" placeholder="Chords" value="{{r.c}}">
+                <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}">
+                <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}">
                 <button>Add New Pool</button>
             </form>
 

@@ -5,14 +5,14 @@ from .chromogram import chromogram_f
 def index(request):
     return render(request, "index.html")
 
-def upload(request): #get
+def upload(request):
     in_form = SongForm2()
     context = {
         "in_form": in_form
     }
     return render(request, 'upload.html' , context)
 
-def analyze(request): #post
+def analyze(request):
     if request.method == "POST":
         f = SongForm2(request.POST)
         if(f.is_valid()):
@@ -21,20 +21,17 @@ def analyze(request): #post
             title = f.cleaned_data['title']
         else:
             print("invalid form")
-        #print("inside chromogram view call")
 
         nameOfFile = artist + '-' + title + '.wav'
         #print(nameOfFile)
-        chords, timestamps, c_string, t_string = chromogram_f(nameOfFile)
+        chords, timestamps = chromogram_f(nameOfFile)
         #print(chords, timestamps)
         results = {
             "c": chords,
             "t": timestamps,
-            "c_s": c_string,
-            "t_s": t_string
         }
         args = {
-            "f": f,
+            #"f": f,
             "nameOfFile": nameOfFile,
             "r": results
         }

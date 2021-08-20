@@ -138,25 +138,28 @@ def chord_recognition_template(X, norm_sim='1', nonchord=False):
 def compute_results(chord_max, Fs, chord_labels):
     first_element = np.argmax(chord_max[:,0])
     chord_index = np.array([first_element])
-    timestamps = np.array([0])
+    #timestamps = np.array([0])
+    timestamps = []
+    timestamps.append(0)
     shape1=chord_max.shape[1]
     for n in range(1, shape1):
         i = np.argmax(chord_max[:,n])
         j = np.argmax(chord_max[:,(n-1)])
         if i !=j:
             chord_index = np.append(chord_index, i)
-            timestamps = np.append(timestamps, round(n/Fs, 3))
+            #timestamps = np.append(timestamps, round(n/Fs, 3))
+            timestamps.append(round(n/Fs, 3))
     a = []
     for n in range(chord_index.shape[0]):
         element = chord_index[n]
         a.append(chord_labels[element])
-    results = np.array(a)
+    #results = np.array(a)
+    results = a
     return results, timestamps
 
 def chromogram_f(name_of_file):
     my_wav = "Songs/" + name_of_file
     path =  BASE_DIR + '/'
-    #print(BASE_DIR)
     #print(path)
     my_path = path.replace('\\', '/')
     #print(my_path)
@@ -190,16 +193,4 @@ def chromogram_f(name_of_file):
     # print(fig.name, fig.bytes)
     chords, timestamps = compute_results(chord_max, Fs_X, chord_labels)
     os.remove(name_of_file)
-    chords_s = ""
-    timestamps_s = ""
-    for e in chords:
-        chords_s = chords_s + e + ' '
-    for e in timestamps:
-        timestamps_s = timestamps_s + str(e) + ' '
-    # a_post = {
-    #     "Chords": chords_s,
-    #     "NameOfSongFile": name_of_file,
-    #     "TimestampsInSec": timestamps_s
-    # }
-    # print(a_post)
-    return chords, timestamps, chords_s, timestamps_s
+    return chords, timestamps

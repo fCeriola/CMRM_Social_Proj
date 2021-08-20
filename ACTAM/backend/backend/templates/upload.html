@@ -46,7 +46,7 @@
         <label id="process"></label>
     </div>
 
-    <div class="content">
+    <div class="content" style="display:block;" id="analyze_form">
 
         <!-- the form below must be visible only after upload progress is completed -->
         <form method="POST" enctype="multipart/form-data" action="analyze">
@@ -54,6 +54,7 @@
             <button type="submit" class="btn btn-primary">Analyze</button>
         </form>
     </div>
+
     <div class="navbar center" style="margin: 0 auto; ">
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
