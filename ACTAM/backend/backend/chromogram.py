@@ -80,7 +80,7 @@ def get_chord_labels(ext_minor='m', nonchord=False):
     Returns:
         chord_labels (list): List of chord labels
     """
-    chroma_labels = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    chroma_labels = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B']
     chord_labels_maj = chroma_labels
     chord_labels_min = [s + ext_minor for s in chroma_labels]
     chord_labels = chord_labels_maj + chord_labels_min
