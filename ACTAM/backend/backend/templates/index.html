@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Need Chords?</title>
+    <link rel="shortcut icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/need-chords.appspot.com/o/Media%2Fnc.png?alt=media&token=9d3e8cb0-21e5-47c4-afa8-68adf89ba3c4">
+
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
@@ -70,9 +72,19 @@
                     <label for="signup-email">Email address</label>
                 </div>
                 <div class="input-field">
+                    <input type="text" id="signup-nickname" required />
+                    <label for="signup-bio">Nickname</label>
+                </div>
+                <div class="input-field">
                     <input type="password" id="signup-password" required />
                     <label for="signup-password">Choose password</label>
                 </div>
+                <br>Upload a profile image.</br>
+                <p></p>
+                <div>
+                    <input type="file" id="profile-img">
+                </div>
+                <br></br>
                 <button class="btn blue darken-2 z-depth-0">Sign up</button>
             </form>
         </div>
@@ -97,6 +109,9 @@
     </div>
 
     <div class="content">
+        <div class="logged-in center">
+            <h4>Welcome to</h4>
+        </div>
         <img src="" alt="Need Chords?" id="index-img" style="width: 70%; margin: 0 auto;" class="center logged-in">
         <!-- ABOUT -->
         <div class=" logged-out center" style="display: none; ">
@@ -128,8 +143,8 @@
 
 
     <!-- Compiled and minified JavaScript -->
-    <script src="{% static 'js/firebase_config.js'%} "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+    <script src="{% static 'js/firebase_config.js'%} "></script>
     <script src="{% static 'js/auth.js'%} "></script>
     <script src="{% static 'js/index.js'%} "></script>
 

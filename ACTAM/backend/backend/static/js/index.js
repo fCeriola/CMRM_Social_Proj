@@ -26,6 +26,8 @@ mediaStorage.child('ncb.png').getDownloadURL().then((url) => {
     var img = document.getElementById('index-img');
     img.setAttribute('src', url)
 });
+
+
 // //favicon
 // mediaStorage.child('nc.png').getDownloadURL().then((url) => {
 //     var img = document.getElementById('favicon');

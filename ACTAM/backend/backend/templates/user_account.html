@@ -4,9 +4,16 @@
 
 
 <head>
-    <title>Account</title>
+    <title>Need Chords?</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="shortcut icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/need-chords.appspot.com/o/Media%2Fnc.png?alt=media&token=9d3e8cb0-21e5-47c4-afa8-68adf89ba3c4">
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
 </head>
 
 <body>
@@ -25,28 +32,33 @@
             </div>
         </div>
     </nav>
-    <h1>a user's own account page</h1>
-    <img id="user_img">
-
+    <h1 class="center">myAccount page</h1>
+    <div class="center">
+        <img id="user_img">
+        <p class="info"></p>
+    </div>
+    
     <!-- move this style to css -->
-    <style>
-        #user_img {
-            height: 200px;
-            width: 200px;
-            border: 2px solid black;
-        }
-    </style>
+    
+        
 
-    <div class=" logged-in">
+    
+
+
+    <div class="navbar center" style="margin: 0 auto; ">
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
             <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
-
         </ul>
     </div>
 
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+    <script src="{% static 'js/firebase_config.js'%} "></script>
+
+    <script src="{% static 'js/user_account.js'%} "></script>
 </body>
 
 </html>

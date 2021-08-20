@@ -4,8 +4,10 @@
 <html>
 
 <head>
-    <title>db posts temp</title>
+    <title>Need Chords?</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="shortcut icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/need-chords.appspot.com/o/Media%2Fnc.png?alt=media&token=9d3e8cb0-21e5-47c4-afa8-68adf89ba3c4">
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
@@ -16,25 +18,23 @@
 <body>
     <nav class="z-depth-3 blue lighten-1">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo" id="logo">
-                <img src='' id="image-box" style="width: 100px; margin-top: 10px;">
+            <a href="#" class="brand-logo" id="logo" style="margin-top: 0%;">
+                <img src='' id="navbar-img" style="width: 150px; object-fit: cover; position: relative; margin-top: 0%;">
             </a>
-            <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
-
-                <li class="logged-in" style="display: none">
-                    <a href="#" class="aliceblue-text" id="logout">Logout</a>
-                </li>
-                <li class="logged-out" style="display: none">
-                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-login">Login</a>
-                </li>
-                <li class="logged-out" style="display: none">
-                    <a href="#" class="aliceblue-text modal-trigger" data-target="modal-signup">Sign up</a>
-                </li>
-            </ul> -->
+            <div class="navbuttons">
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'upload' %}">Upload</a></li>
+                    <li><a href="{% url 'user_account' %}">myAccount</a></li>
+                    <!-- <li><a href="{% url 'index' %}" class="aliceblue-text" id="logout">Logout</a></li> -->
+                </ul>
+            </div>
         </div>
     </nav>
-    <div class="theheader">
-        <h1>DB POSTS TEMP</h1>
+        </div>
+    </nav>
+    <div class="theheader center">
+        <h1>POOLS</h1>
     </div>
     <p>
         <div class="content">
@@ -44,17 +44,16 @@
         </div>
     </p>
 
-    <div class="navbar" id="navbar">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+    <div class="navbar" id="navbar" style="margin:0 auto;">
         <ul>
-            <li><a href="{% url 'index' %}">Index - Login</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
             <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
     </div>
 
-    <script src="{% static 'js/firebase_config.js'%}"></script>
 
+    <script src="{% static 'js/firebase_config.js'%}"></script>
     <script src="{% static 'js/db_posts_temp.js'%}"></script>
 
 </body>

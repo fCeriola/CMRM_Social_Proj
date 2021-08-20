@@ -2,9 +2,10 @@
 //retrieve data only if we are logged in 
 auth.onAuthStateChanged(user => {
     if (user) {
-        setupUI(user)
+        setupUI(user);
     } else {
         setupUI();
+        
     }
 })
 
@@ -18,15 +19,20 @@ signupForm.addEventListener('submit', (e) => {
     //get user info
     const email = signupForm['signup-email'].value;
     const password = signupForm['signup-password'].value;
+    const nickname = signupForm['signup-nickname'].value;
+    
 
     //signup the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
-        console.log(cred)
+        return db.collection('users').doc(cred.user.uid).set({
+            nick: nickname
+          });
+        }).then(()=>{
         const modal = document.querySelector('#modal-signup')
         M.Modal.getInstance(modal).close();
         signupForm.reset();
     }).catch(err => { alert(err.message) })
-})
+});
 
 //logout
 const logout = document.querySelector('#logout');
