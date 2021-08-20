@@ -25,22 +25,23 @@
 <body>
     <!-- NAVBAR -->
     <nav class="z-depth-3 blue lighten-1">
-        <div class="nav-wrapper container">
+        <div class="container">
             <a href="#" class="brand-logo" id="logo" style="margin-top: 0%;">
                 <img src='' id="navbar-img" style="width: 150px; object-fit: cover; position: relative; margin-top: 0%;">
             </a>
-            <div class="logged-in navbuttons" style="display: none; ">
+            <div class="navbuttons logged-in" style="display: none; ">
                 <ul>
                     <li><a href="{% url 'upload' %}">Upload</a></li>
                     <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
                     <li><a href="{% url 'user_account' %}">myAccount</a></li>
+                    <li class="logged-in" style="display: none">
+                        <a href="#" class="aliceblue-text" id="logout">Logout</a>
+                    </li>
                 </ul>
 
             </div>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="logged-in" style="display: none">
-                    <a href="#" class="aliceblue-text" id="logout">Logout</a>
-                </li>
+
                 <li class="logged-out" style="display: none;">
                     <a href="#" class="aliceblue-text modal-trigger" data-target="modal-login">Login</a>
                 </li>
