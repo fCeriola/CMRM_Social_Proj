@@ -163,12 +163,11 @@ button {
 
 /*-----------------USER ACCOUNT------------- */
 
-#user_img {
+#user-img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    border: 2px solid black;
-   
+    border: 2px solid navy;
 }
 
 

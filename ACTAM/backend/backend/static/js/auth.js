@@ -9,8 +9,6 @@ auth.onAuthStateChanged(user => {
     }
 })
 
-
-
 //signup form
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e) => {
@@ -20,18 +18,29 @@ signupForm.addEventListener('submit', (e) => {
     const email = signupForm['signup-email'].value;
     const password = signupForm['signup-password'].value;
     const nickname = signupForm['signup-nickname'].value;
-    
+    // const uploadProfileImg = document.getElementById('profile-img');
 
+
+    
     //signup the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
-        return db.collection('users').doc(cred.user.uid).set({
-            nick: nickname
-          });
-        }).then(()=>{
-        const modal = document.querySelector('#modal-signup')
-        M.Modal.getInstance(modal).close();
-        signupForm.reset();
-    }).catch(err => { alert(err.message) })
+            var profileImg = document.querySelector('#profile-img').files[0];
+            const fileName = nickname+'_prof-img.png';
+            const metadata = {
+                contentType: fileName.type
+            }
+            mediaStorage.child(fileName).put(profileImg, metadata).then(() =>{ 
+                    mediaStorage.child(fileName).getDownloadURL().then((url)=>{ 
+                        return db.collection('users').doc(cred.user.uid).set({nick: nickname, img: url});
+                });
+            });
+            
+        
+    }).then(() => {
+            const modal = document.querySelector('#modal-signup')
+                M.Modal.getInstance(modal).close();
+                signupForm.reset();
+            }).catch(err => { alert(err.message) });
 });
 
 //logout
@@ -56,5 +65,4 @@ loginForm.addEventListener('submit', (e) => {
     }).catch(err => {
         alert(err.message)
     })
-
 })
