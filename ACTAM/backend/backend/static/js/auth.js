@@ -22,7 +22,7 @@ signupForm.addEventListener('submit', (e) => {
 
 
     
-    //signup the user
+    //signup the user anda save img+nickname in db
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
             var profileImg = document.querySelector('#profile-img').files[0];
             const fileName = nickname+'_prof-img.png';
@@ -31,16 +31,18 @@ signupForm.addEventListener('submit', (e) => {
             }
             mediaStorage.child(fileName).put(profileImg, metadata).then(() =>{ 
                     mediaStorage.child(fileName).getDownloadURL().then((url)=>{ 
-                        return db.collection('users').doc(cred.user.uid).set({nick: nickname, img: url});
+                        return db.collection('users').doc(cred.user.uid).set(
+                            {
+                                nick: nickname, 
+                                img: url}
+                            );
                 });
             });
-            
-        
     }).then(() => {
-            const modal = document.querySelector('#modal-signup')
-                M.Modal.getInstance(modal).close();
-                signupForm.reset();
-            }).catch(err => { alert(err.message) });
+        const modal = document.querySelector('#modal-signup')
+            M.Modal.getInstance(modal).close();
+            signupForm.reset();
+        }).catch(err => { alert(err.message) });
 });
 
 //logout

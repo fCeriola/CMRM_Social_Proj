@@ -5,9 +5,9 @@
 
 <head>
     <title>Need Chords?</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="shortcut icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/need-chords.appspot.com/o/Media%2Fnc.png?alt=media&token=9d3e8cb0-21e5-47c4-afa8-68adf89ba3c4">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
@@ -36,23 +36,22 @@
     <div class="theheader center">
         <h1>POOLS</h1>
     </div>
-    <p>
-        <div class="content">
+    
+    <div class="content">
+        <ul id="pool-list" class="collapsible z-depth-0" style="border: none;">
+        </ul>           
+    </div>   
+    
 
-            <ul id="pool-list"></ul>
-
-        </div>
-    </p>
-
-    <div class="navbar" id="navbar" style="margin:0 auto;">
+    <!-- <div class="navbar" id="navbar" style="margin:0 auto;">
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
             <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
-    </div>
+    </div> -->
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{% static 'js/firebase_config.js'%}"></script>
     <script src="{% static 'js/db_posts_temp.js'%}"></script>
 
