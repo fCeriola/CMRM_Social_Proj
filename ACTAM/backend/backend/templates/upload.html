@@ -49,7 +49,8 @@
     <div class="content" style="display:block;" id="analyze_form">
         <!-- the form below must be visible only after upload progress is completed -->
         <form method="POST" enctype="multipart/form-data" action="analyze">
-            {% csrf_token %} {{ in_form.as_p }}
+            {% csrf_token %} 
+            {{ in_form.as_p }}
             <button type="submit" class="btn btn-primary">Analyze</button>
         </form>
     </div>

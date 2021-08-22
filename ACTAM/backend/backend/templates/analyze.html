@@ -22,8 +22,8 @@
                 <th>Chord number</th>
                 <th>Timestamp</th>
                 <th>Chord Name</th>
-                <th>Keep/Change Chord</th>
-                <th>Flag as Doubt</th>
+                <!--<th>Keep/Change Chord</th>
+                <th>Flag as Doubt</th>-->
             </tr>
         </thead>
 
@@ -39,7 +39,7 @@
                         {% endfor %}
                     </td>
                     <td>{{ i }}</td>
-                    <td>
+                    <!--<td>
                         <div>
                             <param value="{{ forloop.counter }}" id="ChordPosition">
                                 <button id="KeepChord" value="{{ i }}">Keep</button>
@@ -72,7 +72,7 @@
                                 </select>
                         </div>
                     </td>
-                    <td><input type="checkbox" id="doubtChord" value="{{ forloop.counter }}"></td>
+                    <td><input type="checkbox" id="doubtChord" value="{{ forloop.counter }}"></td>-->
                 </tr>
             {% endfor %}
         </tbody>
@@ -80,14 +80,15 @@
 
     <br>
     <p>
-        <div class="content"><h3>Auto-generated Pool</h3>
+        <div class="createPool">
+            <h3>Auto-generated Pool</h3>
             <form id="add-pool-form">
-                <input type="text" name="chords" id="chordss" placeholder="Chords" value="{{r.c}}">
-                <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}">
-                <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}">
+                <input type="text" name="chords" id="chords" placeholder="chords" value="{{r.c}}" required>
+                <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}" required>
+                <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}" required>
+                <input type="text" name="description" placeholder="pool description" required size="50">
                 <button>Add New Pool</button>
             </form>
-
         </div>
     </p>
 

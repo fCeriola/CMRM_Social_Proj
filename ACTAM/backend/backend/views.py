@@ -36,7 +36,7 @@ def analyze(request):
             "r": results
         }
         return render(request, 'analyze.html', args)
-    return render(request, 'upload.html')
+    return render(request, 'analyze.html')
 
 def user_account(request):
     return render(request, "user_account.html")
