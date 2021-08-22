@@ -43,15 +43,16 @@
         <input class="input-field" type="text" id="title" placeholder="title" value="" required>
         <br><br>
         <button type="submit" id="upload_button" class="btn btn-primary">Upload </button>
+        <button type="submit" class="btn btn-primary" form="analyze_form">Analyze</button>
         <label id="process"></label>
     </div>
 
-    <div class="content" style="display:block;" id="analyze_form">
+    <div class="content" hidden>
         <!-- the form below must be visible only after upload progress is completed -->
-        <form method="POST" enctype="multipart/form-data" action="analyze">
+        <form method="POST" id="analyze_form" enctype="multipart/form-data" action="analyze">
             {% csrf_token %} 
             {{ in_form.as_p }}
-            <button type="submit" class="btn btn-primary">Analyze</button>
+            <!-- <button type="submit" class="btn btn-primary">Analyze</button> -->
         </form>
     </div>
 

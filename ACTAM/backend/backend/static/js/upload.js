@@ -2,7 +2,13 @@ var uploadButton = document.getElementById("upload_button");
 var progress = 0
 
 uploadButton.onclick = function() {
-    //document.getElementById('analyze_form').style.display = "block";
+    // document.getElementById('analyze_form').attr = "block";
+    //document.getElementById('analyze_form').prop('hidden', false); 
+    var artistName = document.getElementById('artist').value;
+    var songName = document.getElementById('title').value;  
+
+    document.getElementById('id_artist').value = artistName; 
+    document.getElementById('id_title').value = songName; 
 
     const uploadedFile = document.querySelector("#uploaded_song").files[0];
 

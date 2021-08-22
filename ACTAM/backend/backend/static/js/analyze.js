@@ -36,5 +36,6 @@ form.addEventListener('submit', (callback_event) => {
     form.description.value = '';
     form.timestamps.value = '';
     
-    task.then(alert("Pool has been created"));
+   // task.then(alert("Pool has been created"));
+   window.location.href="/db_posts_temp"
 });
