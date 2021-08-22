@@ -11,14 +11,25 @@ uploadButton.onclick = function() {
     const metadata = {
         contentType: nameOfFile.type
     }
-
-    const task = songsStorage.child(nameOfFile).put(uploadedFile, metadata);
-
-    task.on('state_changed', function(snapshot) {
-        progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        document.getElementById("process").innerHTML = "Uploading..." + progress.toFixed(2) + "%";
-    });
-
     
-
+    if (document.querySelector("#uploaded_song").files[0]){
+        if (document.getElementById("artist").value != 0 && document.getElementById("title").value){
+            const task = songsStorage.child(nameOfFile).put(uploadedFile, metadata);
+            task.on('state_changed', function(snapshot) {
+                progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                document.getElementById("process").innerHTML = "Uploading..." + progress.toFixed(2) + "%";
+            });
+        }else{
+            alert('insert artist and title');
+        }
+    }else{
+        alert('upload a song')
+    }
 }
+
+//set images
+//navbar 
+mediaStorage.child('ncw.png').getDownloadURL().then((url) => {
+        var img = document.getElementById('navbar-img');
+        img.setAttribute('src', url)
+});
