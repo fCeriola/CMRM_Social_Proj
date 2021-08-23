@@ -1,11 +1,11 @@
 const form = document.querySelector('#add-pool-form');
-var userNick = "";
+var userID = "";
+var show_plot_button = document.getElementById("show-plot");
+const ploty = document.querySelectorAll('.ploty');
 
 const setupInfo = (user) => {
     if (user){
-        db.collection('users').doc(user.uid).get().then(doc => {
-            userNick = doc.data().nick
-        });
+        userID = user.uid;
     }else{
         userData.innerHTML = ''
     }
@@ -19,6 +19,15 @@ auth.onAuthStateChanged(user => {
     }
 });
 
+show_plot_button.addEventListener('click', (e) =>{
+    e.preventDefault();
+    ploty.forEach(item => item.style.display = 'inline-block');
+    plotStorage.child(show_plot_button.value).getDownloadURL().then((url) => {
+        var img = document.getElementById('plot-img');
+        img.setAttribute('src', url)
+    });
+})
+
 // saving data 
 form.addEventListener('submit', (callback_event) => {
     callback_event.preventDefault();
@@ -28,7 +37,7 @@ form.addEventListener('submit', (callback_event) => {
         NameOfSongFile: form.nameOfFile.value,
         PoolDescription: form.description.value,
         TimestampsInSec: form.timestamps.value,
-        UserID: userNick
+        UserID: userID
     });
 
     form.chords.value = '';

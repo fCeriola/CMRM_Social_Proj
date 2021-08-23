@@ -157,7 +157,31 @@ def compute_results(chord_max, Fs, chord_labels):
     results = a
     return results, timestamps
 
-def chromogram_f(name_of_file):
+def save_plot(chord_max, x, Fs, Fs_X, chord_labels, my_path, name_of_plot):
+    cmap = libfmp.b.compressed_gray_cmap(alpha=1, reverse=False)
+    fig, ax = plt.subplots(2, 2, gridspec_kw={'width_ratios': [1, 0.03], 
+                                          'height_ratios': [0.8, 2.5]}, figsize=(10, 8))
+    libfmp.b.plot_signal(x, Fs, ax=ax[0,0], title='Waveform of audio signal')
+    libfmp.b.plot_matrix(chord_max, ax=[ax[1, 0], ax[1, 1]], Fs=Fs_X, 
+                     title='Time–chord representation of chord recognition result',
+                     ylabel='Chord', xlabel='Time (Seconds)')
+    ax[1, 0].set_yticks(np.arange( len(chord_labels) ))
+    ax[1, 0].set_yticklabels(chord_labels)
+    ax[1, 0].grid()
+    #Saving figure to path
+    plot_name = name_of_plot + "-plot.png"
+    fig.savefig(my_path + plot_name)
+    #print(fig.name, fig.bytes)
+    url_inside_firestore = "Plots/" + plot_name
+    local_url_image = my_path + plot_name
+    storage.child(url_inside_firestore).put(local_url_image)
+    return plot_name
+
+
+
+def chromogram_f(artist, title):
+    name_of_file = artist + '-' + title + '.wav'
+    name_of_plot = artist + '-' + title
     my_wav = "Songs/" + name_of_file
     path =  BASE_DIR + '/'
     #print(path)
@@ -167,6 +191,8 @@ def chromogram_f(name_of_file):
     # Compute chroma features
     fn_wav = my_path + name_of_file
     print("fn_wav status: ok \nanalyzing...")
+
+
     N = 4096
     H = 2048
     X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
@@ -178,19 +204,10 @@ def chromogram_f(name_of_file):
     chord_recognition_template(X)
     get_chord_labels()
     #Plot
-    # cmap = libfmp.b.compressed_gray_cmap(alpha=1, reverse=False)
-    # fig, ax = plt.subplots(2, 2, gridspec_kw={'width_ratios': [1, 0.03], 
-    #                                       'height_ratios': [0.8, 2.5]}, figsize=(10, 8))
-    # libfmp.b.plot_signal(x, Fs, ax=ax[0,0], title='Waveform of audio signal')
-    # libfmp.b.plot_matrix(chord_max, ax=[ax[1, 0], ax[1, 1]], Fs=Fs_X, 
-    #                  title='Time–chord representation of chord recognition result',
-    #                  ylabel='Chord', xlabel='Time (Seconds)')
-    # ax[1, 0].set_yticks(np.arange( len(chord_labels) ))
-    # ax[1, 0].set_yticklabels(chord_labels)
-    # ax[1, 0].grid()
-    #Saving figure to path
-    # fig.savefig(my_path + '/plot.png')
-    # print(fig.name, fig.bytes)
+    image_plot_name = save_plot(chord_max, x, Fs, Fs_X, chord_labels, my_path, name_of_plot)
+
+
     chords, timestamps = compute_results(chord_max, Fs_X, chord_labels)
     os.remove(name_of_file)
-    return chords, timestamps
+    return chords, timestamps, image_plot_name, name_of_file
+

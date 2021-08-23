@@ -42,8 +42,6 @@
                     <th>Chord number</th>
                     <th>Timestamp</th>
                     <th>Chord Name</th>
-                    <!--<th>Keep/Change Chord</th>
-                <th>Flag as Doubt</th>-->
                 </tr>
             </thead>
 
@@ -55,45 +53,15 @@
                         {% for j in r.t %} {% if forloop.counter == forloop.parentloop.counter %} {{j}} {% endif %} {% endfor %}
                     </td>
                     <td>{{ i }}</td>
-                    <!--<td>
-                        <div>
-                            <param value="{{ forloop.counter }}" id="ChordPosition">
-                                <button id="KeepChord" value="{{ i }}">Keep</button>
-                                <label for="newChord">Change:</label>
-                                <select name="newChord" id="newChordName">
-                                    <option value="C">C</option>
-                                    <option value="Cmin">Cmin</option>
-                                    <option value="C# / Db">C# / Db</option>
-                                    <option value="C#min / Dbmin">C#min / Dbmin</option>
-                                    <option value="D">D</option>
-                                    <option value="Dmin">Dmin</option>
-                                    <option value="D# / Eb">D# / Eb</option>
-                                    <option value="D#min / Ebmin">D#min / Ebmin</option>
-                                    <option value="E">E</option>
-                                    <option value="Emin">Emin</option>
-                                    <option value="F">F</option>
-                                    <option value="Fmin">Fmin</option>
-                                    <option value="F# / Gb">F# / Gb</option>
-                                    <option value="F#min / Gbmin">F#min / Gbmin</option>
-                                    <option value="G">G</option>
-                                    <option value="Gmin">Gmin</option>
-                                    <option value="G# / Ab">G# / Ab</option>
-                                    <option value="G#min / Abmin">G#min / Abmin</option>
-                                    <option value="A">A</option>
-                                    <option value="Amin">Amin</option>
-                                    <option value="A# / Bb">A# / Bb</option>
-                                    <option value="A#min / Bbmin">A#min / Bbmin</option>
-                                    <option value="B">B</option>
-                                    <option value="Bmin">Bmin</option>
-                                </select>
-                        </div>
-                    </td>
-                    <td><input type="checkbox" id="doubtChord" value="{{ forloop.counter }}"></td>-->
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-
+        <br>
+        <div>
+            <button id="show-plot" value="{{ ipn }}">Show Plot</button> hide plot-->
+                <img id="plot-img" src="" style="width: 200px;" style="display: none;" class="ploty">  <!-- make hidde / visible -->
+        </div>
         <br>
         <p>
             <div class="createPool">
@@ -109,18 +77,7 @@
         </p>
     </div>
 
-    <!-- <div class="navbar" id="navbar">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
-        <ul>
-            <li><a href="{% url 'index' %}">Index - Login</a></li>
-            <li><a href="{% url 'upload' %}">Upload</a></li>
-            <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
-            <li><a href="{% url 'user_account' %}">myAccount</a></li>
-        </ul>
-    </div> -->
-
     <script src="{% static 'js/firebase_config.js'%}"></script>
-
     <script src="{% static 'js/analyze.js'%}"></script>
 
 </body>

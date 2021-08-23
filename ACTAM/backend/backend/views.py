@@ -22,9 +22,9 @@ def analyze(request):
         else:
             print("invalid form")
 
-        nameOfFile = artist + '-' + title + '.wav'
+        #nameOfFile = artist + '-' + title + '.wav'
         #print(nameOfFile)
-        chords, timestamps = chromogram_f(nameOfFile)
+        chords, timestamps, image_plot_name, nameOfFile = chromogram_f(artist, title)
         #print(chords, timestamps)
         results = {
             "c": chords,
@@ -33,7 +33,8 @@ def analyze(request):
         args = {
             #"f": f,
             "nameOfFile": nameOfFile,
-            "r": results
+            "r": results,
+            "ipn": image_plot_name
         }
         return render(request, 'analyze.html', args)
     return render(request, 'analyze.html')
