@@ -168,6 +168,7 @@ def save_plot(chord_max, x, Fs, Fs_X, chord_labels, my_path, name_of_plot):
     ax[1, 0].set_yticks(np.arange( len(chord_labels) ))
     ax[1, 0].set_yticklabels(chord_labels)
     ax[1, 0].grid()
+    fig.tight_layout()
     #Saving figure to path
     plot_name = name_of_plot + "-plot.png"
     fig.savefig(my_path + plot_name)
