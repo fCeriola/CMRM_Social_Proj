@@ -78,6 +78,7 @@ body {
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1)
 }
 
+
 /* ul {
     list-style-type: none;
     padding: 0;
@@ -166,6 +167,7 @@ button {
 .navbuttons {
     position: absolute;
     left: 70%;
+    background-color: #42A5F5;
 }
 
 
@@ -178,11 +180,10 @@ button {
     border: 2px solid navy;
 }
 
-
-#info{
+#info {
     margin-left: 100%;
     padding: 5px;
 }
 
-/*-----------POOLS------*/
 
+/*-----------POOLS------*/

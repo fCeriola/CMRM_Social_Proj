@@ -8,7 +8,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css'%}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+
     <title>Need Chords?</title>
     <link rel="shortcut icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/need-chords.appspot.com/o/Media%2Fnc.png?alt=media&token=9d3e8cb0-21e5-47c4-afa8-68adf89ba3c4">
 
@@ -19,7 +22,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
 
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 
 <body>
@@ -73,7 +75,7 @@
                 <br>Upload a profile image.</br>
                 <p></p>
                 <div>
-                    <input type='file' id="profile-img"  />
+                    <input type='file' id="profile-img" />
                 </div>
                 <br></br>
                 <button id="upload-profile-img" class="btn blue darken-2 z-depth-0">Sign up</button>
@@ -104,7 +106,7 @@
             <h4>Welcome to</h4>
         </div>
         <img src="" alt="Need Chords?" id="index-img" style="width: 70%; margin: 0 auto;" class="center logged-in">
-        
+
         <!-- ABOUT -->
         <div class=" logged-out center" style="display: none; ">
             <header>

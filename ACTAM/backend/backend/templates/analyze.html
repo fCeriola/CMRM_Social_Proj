@@ -5,7 +5,9 @@
 
 <head>
     <title>analyze results</title>
-    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/db_posts_temp.css'%}">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css'%}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
@@ -14,29 +16,43 @@
 </head>
 
 <body>
-    <h1>analyze page</h1>
-    <h2>Results for: "{{ nameOfFile }}"</h2>
-    <table class="table mb-0">
-        <thead>
-            <tr>
-                <th>Chord number</th>
-                <th>Timestamp</th>
-                <th>Chord Name</th>
-                <!--<th>Keep/Change Chord</th>
-                <th>Flag as Doubt</th>-->
-            </tr>
-        </thead>
+    <nav class="z-depth-3 blue lighten-1">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" id="logo" style="margin-top: 0%;">
+                <img src='' id="navbar-img" style="width: 150px; object-fit: cover; position: relative; margin-top: 0%;">
+            </a>
+            <div class="navbuttons">
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'upload' %}">Upload</a></li>
+                    <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
+                    <li><a href="{% url 'user_account' %}">myAccount</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <tbody>
-            {% for i in r.c %}
+    <h1>Result of the analysis</h1>
+
+    <div class="content">
+        <h2>Results for: "{{ nameOfFile }}"</h2>
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>Chord number</th>
+                    <th>Timestamp</th>
+                    <th>Chord Name</th>
+                    <!--<th>Keep/Change Chord</th>
+                <th>Flag as Doubt</th>-->
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for i in r.c %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
                     <td>
-                        {% for j in r.t %}
-                            {% if forloop.counter == forloop.parentloop.counter %}
-                                {{j}}
-                            {% endif %}
-                        {% endfor %}
+                        {% for j in r.t %} {% if forloop.counter == forloop.parentloop.counter %} {{j}} {% endif %} {% endfor %}
                     </td>
                     <td>{{ i }}</td>
                     <!--<td>
@@ -74,33 +90,34 @@
                     </td>
                     <td><input type="checkbox" id="doubtChord" value="{{ forloop.counter }}"></td>-->
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <br>
-    <p>
-        <div class="createPool">
-            <h3>Auto-generated Pool</h3>
-            <form id="add-pool-form">
-                <input type="text" name="chords" id="chords" placeholder="chords" value="{{r.c}}" required>
-                <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}" required>
-                <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}" required>
-                <input type="text" name="description" placeholder="pool description" required size="50">
-                <button>Add New Pool</button>
-            </form>
-        </div>
-    </p>
+        <br>
+        <p>
+            <div class="createPool">
+                <h3>Auto-generated Pool</h3>
+                <form id="add-pool-form">
+                    <input type="text" name="chords" id="chords" placeholder="chords" value="{{r.c}}" required>
+                    <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}" required>
+                    <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}" required>
+                    <input type="text" name="description" placeholder="pool description" required size="50">
+                    <button>Add New Pool</button>
+                </form>
+            </div>
+        </p>
+    </div>
 
-    <div class="navbar" id="navbar">
-        <!--<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">-->
+    <!-- <div class="navbar" id="navbar">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
         <ul>
             <li><a href="{% url 'index' %}">Index - Login</a></li>
             <li><a href="{% url 'upload' %}">Upload</a></li>
             <li><a href="{% url 'db_posts_temp' %}">Pools</a></li>
             <li><a href="{% url 'user_account' %}">myAccount</a></li>
         </ul>
-    </div>
+    </div> -->
 
     <script src="{% static 'js/firebase_config.js'%}"></script>
 
