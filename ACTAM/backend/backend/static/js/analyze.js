@@ -2,6 +2,8 @@ const form = document.querySelector('#add-pool-form');
 var userID = "";
 var show_plot_button = document.getElementById("show-plot");
 const ploty = document.querySelectorAll('.ploty');
+var show_audio_button = document.getElementById("show-aud");
+const ploty2 = document.querySelectorAll('.ploty2');
 
 const setupInfo = (user) => {
     if (user){
@@ -19,14 +21,31 @@ auth.onAuthStateChanged(user => {
     }
 });
 
+
 show_plot_button.addEventListener('click', (e) =>{
     e.preventDefault();
-    ploty.forEach(item => item.style.display = 'inline-block');
-    plotStorage.child(show_plot_button.value).getDownloadURL().then((url) => {
+    var image_name = show_plot_button.value;
+    mediaStorage.child(image_name).getDownloadURL().then((url) => {
         var img = document.getElementById('plot-img');
         img.setAttribute('src', url)
     });
+    ploty.forEach(item => item.style.display = 'inline-block');
 })
+
+show_audio_button.addEventListener('click', (e) =>{
+    e.preventDefault();
+    var audio_name = show_audio_button.value;
+    songsStorage.child(audio_name).getDownloadURL().then((url) => {
+        var aud = document.getElementById('song-aud');
+        aud.setAttribute('src', url)
+    });
+    ploty2.forEach(item => item.style.display = 'inline-block');
+})
+
+mediaStorage.child('ncw.png').getDownloadURL().then((url) => {
+    var img = document.getElementById('navbar-img');
+    img.setAttribute('src', url)
+});
 
 // saving data 
 form.addEventListener('submit', (callback_event) => {

@@ -172,7 +172,7 @@ def save_plot(chord_max, x, Fs, Fs_X, chord_labels, my_path, name_of_plot):
     plot_name = name_of_plot + "-plot.png"
     fig.savefig(my_path + plot_name)
     #print(fig.name, fig.bytes)
-    url_inside_firestore = "Plots/" + plot_name
+    url_inside_firestore = "Media/" + plot_name
     local_url_image = my_path + plot_name
     storage.child(url_inside_firestore).put(local_url_image)
     return plot_name
@@ -205,6 +205,7 @@ def chromogram_f(artist, title):
     get_chord_labels()
     #Plot
     image_plot_name = save_plot(chord_max, x, Fs, Fs_X, chord_labels, my_path, name_of_plot)
+    os.remove(image_plot_name)
 
 
     chords, timestamps = compute_results(chord_max, Fs_X, chord_labels)

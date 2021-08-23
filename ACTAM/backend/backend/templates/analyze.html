@@ -59,8 +59,12 @@
         </table>
         <br>
         <div>
-            <button id="show-plot" value="{{ ipn }}">Show Plot</button> hide plot-->
-                <img id="plot-img" src="" style="width: 200px;" style="display: none;" class="ploty">  <!-- make hidde / visible -->
+            <button id="show-plot" value="{{ ipn }}">Show Plot</button> <!--hide plot-->
+                <img id="plot-img" src="" style="width: 600px;" style="display: none;" class="ploty">  <!-- make hidde / visible -->
+            <button id="show-aud" value="{{ nameOfFile }}">Show Player</button> <!--hide plot-->
+                <audio controls id="song-aud" style="display: none;" class="ploty2" src="">
+                    <source type="audio/mpeg">
+                </audio>
         </div>
         <br>
         <p>

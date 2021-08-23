@@ -16,4 +16,3 @@ db.settings({
 });
 const mediaStorage = firebase.storage().ref("Media/");
 const songsStorage = firebase.storage().ref("Songs/");
-const plotStorage = firebase.storage().ref("Plots/");
