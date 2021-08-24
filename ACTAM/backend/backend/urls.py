@@ -28,5 +28,5 @@ urlpatterns = [
     path('upload/', views.upload, name="upload"),
     path('user_account/', views.user_account, name="user_account"),
     path('upload/analyze', views.analyze, name="analyze"),
-    path('db_posts_temp/', views.db_posts_temp, name="db_posts_temp"),
+    path('posts/', views.db_posts_temp, name="posts"),
 ] 

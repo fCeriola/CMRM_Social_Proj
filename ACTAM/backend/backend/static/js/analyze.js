@@ -1,18 +1,19 @@
-const form = document.querySelector('#add-pool-form');
-var userID = "";
+const form = document.querySelector('#add-post-form');
+var usernick = "";
 var show_plot_button = document.getElementById("show-plot");
 const ploty = document.querySelectorAll('.ploty');
 var show_audio_button = document.getElementById("show-aud");
 const ploty2 = document.querySelectorAll('.ploty2');
 
 const setupInfo = (user) => {
-    if (user) {
-        userID = user.uid;
-    } else {
+    if (user){
+        db.collection('users').doc(user.uid).get().then(doc => {
+            usernick = doc.data().nick
+        });
+    }else{
         userData.innerHTML = ''
     }
 }
-
 auth.onAuthStateChanged(user => {
     if (user) {
         setupInfo(user);
@@ -58,18 +59,18 @@ mediaStorage.child('ncw.png').getDownloadURL().then((url) => {
 // saving data 
 form.addEventListener('submit', (callback_event) => {
     callback_event.preventDefault();
-    const task = db.collection('Pools3').add({
+    const task = db.collection('Posts').add({
         Chords: form.chords.value,
         NameOfSongFile: form.nameOfFile.value,
-        PoolDescription: form.description.value,
+        Description: form.description.value,
         TimestampsInSec: form.timestamps.value,
-        UserID: userID
+        UserNick: usernick
     });
 
 
     task.then(()=>{
-        if(confirm("Pool has been created\nGo to Pools?")){
-            window.location.href = "/db_posts_temp"
+        if(confirm("Pool has been created\nGo to Posts?")){
+            window.location.href = "/posts"
         }
         else{
             
