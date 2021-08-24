@@ -2,8 +2,7 @@ const poolList = document.querySelector('#post-list');
 
 // create element
 //doc => Posts--->NameOfSong,Analytics,usernick
-function renderPost(docPost){
-    
+function renderPost(docPost){ 
     
     let li = document.createElement('li');
 
@@ -28,26 +27,26 @@ function renderPost(docPost){
     let newComment = document.createElement('form');
     let commentText = document.createElement('input');
     commentText.type = 'text';
-    commentText.id = 'comment-text'
+    commentText.id = 'comment-text';
     commentText.placeholder = 'Your comment...';
     let commentButton = document.createElement('button');
     commentButton.type = 'submit';
-    commentButton.id = 'comment-btn'
+    commentButton.id = 'comment-btn';
     commentButton.classList.add('btn', 'btn-primary');
     newComment.appendChild(commentText);
     newComment.appendChild(commentButton);
-    commentButton.textContent = 'comment'
+    commentButton.textContent = 'comment';
         
     
-    let ChordsString = document.createElement('p')
+    let ChordsString = document.createElement('p');
     let NameOfSongFile = document.createElement('p');
     let TimestampsInSec = document.createElement('p'); 
-    let Description = document.createElement('p')
+    let Description = document.createElement('p');
     
 
     li.setAttribute('data-id', docPost.id);
     ChordsString.textContent = docPost.data().Chords;
-    NameOfSongFile.innerHTML = `<strong style="font-size: large;">${docPost.data().NameOfSongFile}</strong> <em style="font-size: small;">uploaded by</em> <strong>${docPost.data().UserNick}</strong>`
+    NameOfSongFile.innerHTML = `<strong style="font-size: large;">${docPost.data().NameOfSongFile}</strong> <em style="font-size: small;">uploaded by</em> <strong>${docPost.data().UserNick}</strong>`;
     TimestampsInSec.textContent = docPost.data().TimestampsInSec;
     Description.textContent = 'Description: '+docPost.data().Description;
 
@@ -63,15 +62,13 @@ function renderPost(docPost){
     content.appendChild(TimestampsInSec);
     content.appendChild(newComment);
     
-
     poolList.appendChild(li);  
-
     
 
-    let commentsList = document.createElement('ul')
+    let commentsList = document.createElement('ul');
     commentsList.innerHTML = `
     <br></br>
-    <h5>Comments for this post</h5>`
+    <h5>Comments for this post</h5> `
 
     //getting Comments Data
     // db.collection('Posts').doc(docPost.data().NameOfSongFile).collection('Comments').get().then(snapshot => {
@@ -85,7 +82,7 @@ function renderPost(docPost){
                 then render all its comments
     */
 
-    content.appendChild(commentsList);
+    
 
     //----------submit comment-----------//
     var usernick = "";
@@ -96,47 +93,61 @@ function renderPost(docPost){
             });
             newComment.addEventListener('submit', (e) =>{
                 e.preventDefault();
-                commentFunc(usernick, commentText, docPost, newComment)
+                commentFunc(usernick, commentText, docPost, newComment, content)
+                
             })
         }        
-    });    
-    //------------------------------------//
+    });  
+    db.collection('Comments').onSnapshot(snapshot => {
+        let changes = snapshot.docChanges();
+        changes.forEach(change =>{
+            if(change.doc.data().Docu == docPost.id){
+                if (change.type == 'added'){
+                    renderComments(change.doc, content)
+                }
+            }
+        })
+    }); 
 
 }
 
 //-----Comment button function-------//
 
-function commentFunc(user, comment, docu, commentForm){
-       
+function commentFunc(user, comment, docu, commentForm, content){
+    
     console.log(comment.value, user, docu.id)
-        
-    db.collection('Comments')
+    if (comment.value){ 
+        db.collection('Comments')
         .add({
             Text: comment.value,
             User: user,
             Docu: docu.id
-        })
+        }) 
     .then(() => {
             commentForm.reset();
         });
+    }else{alert('Please enter a comment')}   
 }
 
 
 
 
-function renderComments(doc, commentsList){
+function renderComments(docComm, content){
+console.log('renderComments')
+
     //Comment List
-    let li = document.createElement('li');
+    let li = document.createElement('p');
     let user = document.createElement('b')
     let comment = document.createElement('span')
 
-    li.setAttribute('data-id', doc.id);
-    user.textContent = doc.data().user+' - ';
-    comment.textContent = doc.data().comment;
+    li.setAttribute('data-id', docComm.id);
+    user.textContent = docComm.data().User+' : ';
+    comment.textContent = docComm.data().Text;
 
-    commentsList.appendChild(li);
+    content.appendChild(li);
     li.appendChild(user);
     li.appendChild(comment);
+    //content.appendChild(commentsList);
 }
 
 
