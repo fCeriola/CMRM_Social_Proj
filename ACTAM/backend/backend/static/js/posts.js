@@ -37,16 +37,19 @@ function renderPost(docPost){
     newComment.appendChild(commentButton);
     commentButton.textContent = 'comment';
         
-    
+    let ChordsHeader = document.createElement('p');
     let ChordsString = document.createElement('p');
     let NameOfSongFile = document.createElement('p');
+    let TimestampsHeader = document.createElement('p');
     let TimestampsInSec = document.createElement('p'); 
     let Description = document.createElement('p');
     
 
     li.setAttribute('data-id', docPost.id);
+    ChordsHeader.innerHTML = `<strong>Chords: </strong>`
     ChordsString.textContent = docPost.data().Chords;
     NameOfSongFile.innerHTML = `<strong style="font-size: large;">${docPost.data().NameOfSongFile}</strong> <em style="font-size: small;">uploaded by</em> <strong>${docPost.data().UserNick}</strong>`;
+    TimestampsHeader.innerHTML = `<strong>Timestamps: </strong>`
     TimestampsInSec.textContent = docPost.data().TimestampsInSec;
     Description.innerHTML = `<strong> Description: </strong>`+docPost.data().Description;
 
@@ -56,9 +59,11 @@ function renderPost(docPost){
     audio.appendChild(source);
     content.appendChild(audio);
     header.appendChild(NameOfSongFile);
-    content.appendChild(Description);
     content.appendChild(audio);
+    content.appendChild(Description);
+    content.appendChild(ChordsHeader);
     content.appendChild(ChordsString);
+    content.appendChild(TimestampsHeader);
     content.appendChild(TimestampsInSec);
     content.appendChild(newComment);
     
