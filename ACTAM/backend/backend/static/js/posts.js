@@ -71,54 +71,54 @@ function renderPost(docPost){
     let commentsList = document.createElement('ul')
     commentsList.innerHTML = `
     <br></br>
-    <h5>Comments from other users</h5>`
+    <h5>Comments for this post</h5>`
 
     //getting Comments Data
-        // db.collection('Posts').doc(docPost.data().NameOfSongFile).collection('Comments').get().then(snapshot => {
-        //     snapshot.docs.forEach(doccomm => {
-        //         renderComments(doccomm, commentsList);
-        //     });
-        //  }); 
+    // db.collection('Posts').doc(docPost.data().NameOfSongFile).collection('Comments').get().then(snapshot => {
+    //     snapshot.docs.forEach(doccomm => {
+    //         renderComments(doccomm, commentsList);
+    //     });
+    // }); 
+    /*
+     --> for each document in comments, 
+            if comment.docu == this Post.id
+                then render all its comments
+    */
 
     content.appendChild(commentsList);
 
-
-    //-----Comment button function-------//
-
-    function commentFunc(user){
-        const comment = newComment['comment-text'].value;
-        // db.collection('users').doc(user.uid).get().then((doc)=>{
-        //     console.log(doc.data().nick);
-        // });
-
-        db.collection('users').doc(user.uid).get().then((doc)=>{
-            
-            db.collection('Posts').doc(docPost).get().then(() => {
-                console.log(docPost.data())
-            })
-            // .collection('Comments')
-            // .doc().set({
-            //     Text: comment,
-            //     User: doc.data().nick
-            // });
-        })
-        .then(() => {
-                newComment.reset();
-            })
-    }
     //----------submit comment-----------//
+    var usernick = "";
     auth.onAuthStateChanged(user => {
         if (user) {
+            db.collection('users').doc(user.uid).get().then(doc => {
+                usernick = doc.data().nick
+            });
             newComment.addEventListener('submit', (e) =>{
                 e.preventDefault();
-                commentFunc(user)
+                commentFunc(usernick, commentText, docPost, newComment)
             })
         }        
-    })
-
-    
+    });    
     //------------------------------------//
 
+}
+
+//-----Comment button function-------//
+
+function commentFunc(user, comment, docu, commentForm){
+       
+    console.log(comment.value, user, docu.id)
+        
+    db.collection('Comments')
+        .add({
+            Text: comment.value,
+            User: user,
+            Docu: docu.id
+        })
+    .then(() => {
+            commentForm.reset();
+        });
 }
 
 
@@ -146,21 +146,6 @@ db.collection('Posts').get().then(snapshot => {
         renderPost(doc);
     });
 }); 
-
-//saving Comments in db
-
-// saving data 
-/*
-form.addEventListener('submit', (callback_event) => {
-    callback_event.preventDefault();
-    db.collection('Cafes').add({ //object document
-        Name: form.name.value,
-        City: form.city.value
-    });
-    form.name.value = '';
-    form.city.value = '';
-});
-*/
 
 //set images
 //navbar 
