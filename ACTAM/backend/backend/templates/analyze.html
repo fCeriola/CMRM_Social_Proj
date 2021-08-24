@@ -60,9 +60,9 @@
         </table>
         <br>
         <div>
-            <button id="show-plot" value="{{ ipn }}">Show Plot</button> <!--hide plot-->
-                <img id="plot-img" src="" style="width: 600px;" style="display: none;" class="ploty">  <!-- make hidde / visible -->
-            <button id="show-aud" value="{{ nameOfFile }}">Show Player</button> <!--hide plot-->
+            <button id="show-plot" value="{{ ipn }}">Show Plot</button>
+                <img id="plot-img" src="" style="width: 600px;" style="display: none;" class="ploty">
+            <button id="show-aud" value="{{ nameOfFile }}">Show Player</button>
                 <audio controls id="song-aud" style="display: none;" class="ploty2" src="">
                     <source type="audio/mpeg">
                 </audio>
@@ -75,7 +75,7 @@
                     <input type="text" name="chords" id="chords" placeholder="chords" value="{{r.c}}" required>
                     <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}" required>
                     <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}" required>
-                    <input type="text" name="description" placeholder="pool description" required size="50">
+                    <input type="text" name="description" placeholder="pool description" required>
                     <button>Add New Pool</button>
                 </form>
             </div>

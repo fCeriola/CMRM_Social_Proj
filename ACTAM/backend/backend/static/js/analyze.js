@@ -58,7 +58,6 @@ mediaStorage.child('ncw.png').getDownloadURL().then((url) => {
 // saving data 
 form.addEventListener('submit', (callback_event) => {
     callback_event.preventDefault();
-
     const task = db.collection('Pools3').add({
         Chords: form.chords.value,
         NameOfSongFile: form.nameOfFile.value,
@@ -67,11 +66,19 @@ form.addEventListener('submit', (callback_event) => {
         UserID: userID
     });
 
+
+    task.then(()=>{
+        if(confirm("Pool has been created\nGo to Pools?")){
+            window.location.href = "/db_posts_temp"
+        }
+        else{
+            
+        }
+    });
+    
     form.chords.value = '';
     form.nameOfFile.value = '';
     form.description.value = '';
     form.timestamps.value = '';
 
-    // task.then(alert("Pool has been created"));
-    window.location.href = "/db_posts_temp"
 });
