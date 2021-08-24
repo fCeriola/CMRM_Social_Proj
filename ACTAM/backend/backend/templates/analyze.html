@@ -25,7 +25,6 @@
             <div class="navbuttons">
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'upload' %}">Upload</a></li>
                     <li><a href="{% url 'posts' %}">Posts</a></li>
                     <li><a href="{% url 'user_account' %}">myAccount</a></li>
                 </ul>
@@ -63,8 +62,11 @@
         <br>
         <div>
             <button id="show-plot" value="{{ ipn }}">Show Plot</button>
-            <img id="plot-img" src="" style="width: 600px;" style="display: none;" class="ploty">
+            <br>
+            <img id="plot-img" src="" style="display: none;" class="ploty">
+            <br>
             <button id="show-aud" value="{{ nameOfFile }}">Show Player</button>
+            <br><br>
             <audio controls id="song-aud" style="display: none;" class="ploty2" src="">
                     <source type="audio/mpeg">
                 </audio>
@@ -72,11 +74,10 @@
         <br>
         <p>
             <div class="createPost">
-                <h3>Auto-generated Post</h3>
                 <form id="add-post-form">
-                    <input type="text" name="chords" id="chords" placeholder="chords" value="{{r.c}}" required>
-                    <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}" required>
-                    <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}" required>
+                    <input type="text" name="chords" id="chords" value="{{r.c}}" required hidden>
+                    <input type="text" name="nameOfFile" value="{{ nameOfFile }}" required hidden>
+                    <input type="text" name="timestamps" value="{{r.t}}" required hidden>
                     <input type="text" name="description" placeholder="post description" required>
                     <button>Add New Post</button>
                 </form>

@@ -32,7 +32,10 @@ show_plot_button.addEventListener('click', (e) => {
     });
     ploty.forEach(item => {
         if (item.style.display == 'none') {
-            ploty.forEach(item => item.style.display = 'block');
+            ploty.forEach(item => {
+                item.style.display = 'block';
+                item.style="width: 600px";
+        });
         } else { ploty.forEach(item => item.style.display = 'none'); }
     })
 });
