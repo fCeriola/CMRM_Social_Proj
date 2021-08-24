@@ -48,7 +48,7 @@ function renderPost(docPost){
     ChordsString.textContent = docPost.data().Chords;
     NameOfSongFile.innerHTML = `<strong style="font-size: large;">${docPost.data().NameOfSongFile}</strong> <em style="font-size: small;">uploaded by</em> <strong>${docPost.data().UserNick}</strong>`;
     TimestampsInSec.textContent = docPost.data().TimestampsInSec;
-    Description.textContent = 'Description: '+docPost.data().Description;
+    Description.innerHTML = `<strong> Description: </strong>`+docPost.data().Description;
 
     //append in the right order
     li.appendChild(header);   
@@ -93,12 +93,12 @@ function renderPost(docPost){
             });
             newComment.addEventListener('submit', (e) =>{
                 e.preventDefault();
-                commentFunc(usernick, commentText, docPost, newComment, content)
+                commentFunc(usernick, commentText, docPost, newComment)
                 
             })
         }        
     });  
-    db.collection('Comments').onSnapshot(snapshot => {
+    db.collection('Comments').orderBy('Date').onSnapshot(snapshot => {
         let changes = snapshot.docChanges();
         changes.forEach(change =>{
             if(change.doc.data().Docu == docPost.id){
@@ -113,15 +113,24 @@ function renderPost(docPost){
 
 //-----Comment button function-------//
 
-function commentFunc(user, comment, docu, commentForm, content){
+function commentFunc(user, comment, docu, commentForm){
     
     console.log(comment.value, user, docu.id)
     if (comment.value){ 
+        const myDate = new Date();
+        var day = myDate.getDate();
+        var month = myDate.getMonth() + 1;
+        var year = myDate.getFullYear();
+        var h = myDate.getHours();
+        var min = myDate.getMinutes();
+
+        var formDate = day+'.'+month+'.'+year+' at '+h+':'+min
         db.collection('Comments')
         .add({
             Text: comment.value,
             User: user,
-            Docu: docu.id
+            Docu: docu.id,
+            Date: formDate
         }) 
     .then(() => {
             commentForm.reset();
@@ -137,17 +146,28 @@ console.log('renderComments')
 
     //Comment List
     let li = document.createElement('p');
-    let user = document.createElement('b')
-    let comment = document.createElement('span')
+    let user = document.createElement('b');
+    let comment = document.createElement('span');
+    let date = document.createElement('span');
+    let form = document.createElement('div');
 
     li.setAttribute('data-id', docComm.id);
-    user.textContent = docComm.data().User+' : ';
+    user.textContent = docComm.data().User;
     comment.textContent = docComm.data().Text;
+    date.innerHTML = `     (<em style="font-size: small;">${docComm.data().Date}</em>)   :  `;
+    // date.textContent = docComm.data().Date;
+
+
+    console.log(docComm.data().Date)
+    
 
     content.appendChild(li);
-    li.appendChild(user);
-    li.appendChild(comment);
-    //content.appendChild(commentsList);
+    li.appendChild(form);
+    form.appendChild(user);
+    form.appendChild(date);
+    form.appendChild(comment);
+    
+    
 }
 
 
