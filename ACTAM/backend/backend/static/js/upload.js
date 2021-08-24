@@ -26,8 +26,7 @@ uploadButton.onclick = function() {
             task.on('state_changed', function(snapshot) {
                 progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 document.getElementById("process").innerHTML = "Uploading..." + progress.toFixed(2) + "%";
-                afterUpload.forEach(item => item.style.display = 'inline-block');
-            });
+            }).then(afterUpload.forEach(item => item.style.display = 'inline-block'));
         } else {
             alert('insert artist and title');
         }

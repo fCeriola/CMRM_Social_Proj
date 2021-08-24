@@ -33,7 +33,9 @@
         </div>
     </nav>
 
-    <h1>Result of the analysis</h1>
+    <div class="theheader center">
+        <h1>Results of the analysis</h1>
+    </div>
 
     <div class="content">
         <h2>Results for: "{{ nameOfFile }}"</h2>
@@ -61,22 +63,22 @@
         <br>
         <div>
             <button id="show-plot" value="{{ ipn }}">Show Plot</button>
-                <img id="plot-img" src="" style="width: 600px;" style="display: none;" class="ploty">
+            <img id="plot-img" src="" style="width: 600px;" style="display: none;" class="ploty">
             <button id="show-aud" value="{{ nameOfFile }}">Show Player</button>
-                <audio controls id="song-aud" style="display: none;" class="ploty2" src="">
+            <audio controls id="song-aud" style="display: none;" class="ploty2" src="">
                     <source type="audio/mpeg">
                 </audio>
         </div>
         <br>
         <p>
             <div class="createPost">
-                <h3>Auto-generated Pool</h3>
+                <h3>Auto-generated Post</h3>
                 <form id="add-post-form">
                     <input type="text" name="chords" id="chords" placeholder="chords" value="{{r.c}}" required>
                     <input type="text" name="nameOfFile" placeholder="nameOfFile" value="{{ nameOfFile }}" required>
                     <input type="text" name="timestamps" placeholder="timestamps" value="{{r.t}}" required>
-                    <input type="text" name="description" placeholder="pool description" required>
-                    <button>Add New Pool</button>
+                    <input type="text" name="description" placeholder="post description" required>
+                    <button>Add New Post</button>
                 </form>
             </div>
         </p>

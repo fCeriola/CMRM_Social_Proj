@@ -29,14 +29,16 @@
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'user_account' %}">myAccount</a></li>
-                    <li><a href="{% url 'posts' %}">Pools</a></li>
+                    <li><a href="{% url 'posts' %}">Posts</a></li>
                     <!-- <li><a href="{% url 'index' %}" class="aliceblue-text" id="logout">Logout</a></li> -->
                 </ul>
             </div>
         </div>
     </nav>
-
     <div class="content">
+        <h6><strong>Attention!</strong> This system only accepts files in <strong>.wav</strong> fromat!</h6>
+        <p><strong>Suggestion:</strong> if you want to have a quicker analysis and a better visualization of the results, you might want to load short files.</p>
+        <br></br>
         <input type="file" id="uploaded_song" name="document" required>
         <br><br>
         <input class="input-field" type="text" id="artist" placeholder="artist" value="" required>
