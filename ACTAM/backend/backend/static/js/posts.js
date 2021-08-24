@@ -2,10 +2,11 @@ const poolList = document.querySelector('#post-list');
 
 // create element
 //doc => Posts--->NameOfSong,Analytics,usernick
-function renderPosts(doc){
+function renderPost(docPost){
     
     
     let li = document.createElement('li');
+
     //header
     let header = document.createElement('div');
     header.classList.add('collapsible-header', 'grey', 'lighten-4');
@@ -17,10 +18,9 @@ function renderPosts(doc){
     //audio
     let audio = document.createElement('audio');
     let source = document.createElement('source');
-    songsStorage.child(doc.data().NameOfSongFile).getDownloadURL().then((url) =>{
-            console.log(url)
-            audio.setAttribute('src', url)
-        })
+    songsStorage.child(docPost.data().NameOfSongFile).getDownloadURL().then((url) => {
+       audio.setAttribute('src', url);
+    });
     source.type ='audio/mpeg'
     audio.controls = true;
 
@@ -45,11 +45,11 @@ function renderPosts(doc){
     let Description = document.createElement('p')
     
 
-    li.setAttribute('data-id', doc.id);
-    ChordsString.textContent = doc.data().ChordsString;
-    NameOfSongFile.textContent = doc.data().NameOfSongFile +`<i>uploaded by</i> ${doc.data().UserNick}`
-    TimestampsInSec.textContent = doc.data().TimestampsInSec;
-    Description.textContent = 'Description: '+doc.data().Description;
+    li.setAttribute('data-id', docPost.id);
+    ChordsString.textContent = docPost.data().Chords;
+    NameOfSongFile.innerHTML = `<strong style="font-size: large;">${docPost.data().NameOfSongFile}</strong> <em style="font-size: small;">uploaded by</em> <strong>${docPost.data().UserNick}</strong>`
+    TimestampsInSec.textContent = docPost.data().TimestampsInSec;
+    Description.textContent = 'Description: '+docPost.data().Description;
 
     //append in the right order
     li.appendChild(header);   
@@ -74,39 +74,49 @@ function renderPosts(doc){
     <h5>Comments from other users</h5>`
 
     //getting Comments Data
-        db.collection('Comments').doc(doc.data().NameOfSongFile).collection('comments').get().then(snapshot => {
-            snapshot.docs.forEach(doccomm => {
-                renderComments(doccomm, commentsList);
-            });
-         }); 
+        // db.collection('Posts').doc(docPost.data().NameOfSongFile).collection('Comments').get().then(snapshot => {
+        //     snapshot.docs.forEach(doccomm => {
+        //         renderComments(doccomm, commentsList);
+        //     });
+        //  }); 
 
     content.appendChild(commentsList);
 
 
     //-----Comment button function-------//
+
+    function commentFunc(user){
+        const comment = newComment['comment-text'].value;
+        // db.collection('users').doc(user.uid).get().then((doc)=>{
+        //     console.log(doc.data().nick);
+        // });
+
+        db.collection('users').doc(user.uid).get().then((doc)=>{
+            
+            db.collection('Posts').doc(docPost).get().then(() => {
+                console.log(docPost.data())
+            })
+            // .collection('Comments')
+            // .doc().set({
+            //     Text: comment,
+            //     User: doc.data().nick
+            // });
+        })
+        .then(() => {
+                newComment.reset();
+            })
+    }
     //----------submit comment-----------//
     auth.onAuthStateChanged(user => {
         if (user) {
             newComment.addEventListener('submit', (e) =>{
                 e.preventDefault();
-                comment(user)
+                commentFunc(user)
             })
         }        
     })
 
-    function comment(user){
-        const comment = newComment['comment-text'].value;
-        db.collection('Posts').doc(doc.data().NameOfSongFile)
-            .collection('Comments').doc().set({
-                Text: comment,
-                User: db.collection('users').doc(user.uid).nick
-            }).then(() => {
-                newComment.reset();
-            })
-            .then(() => {
-                renderComments(db.collection('Comments').doc(doc.data().NameOfSongFile), commentsList);
-            })
-    }
+    
     //------------------------------------//
 
 }
@@ -130,10 +140,10 @@ function renderComments(doc, commentsList){
 }
 
 
-// getting Pool data
+// getting Post data
 db.collection('Posts').get().then(snapshot => {
     snapshot.docs.forEach(doc => {
-        renderPosts(doc);
+        renderPost(doc);
     });
 }); 
 
