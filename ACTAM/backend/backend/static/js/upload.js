@@ -1,5 +1,5 @@
 var uploadButton = document.getElementById("upload_button");
-var progress = 0
+var progress = 0;
 
 uploadButton.onclick = function() {
     // document.getElementById('analyze_form').attr = "block";
@@ -27,7 +27,11 @@ uploadButton.onclick = function() {
                 progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 document.getElementById("process").innerHTML = "Uploading..." + progress.toFixed(2) + "%";
             });
-            afterUpload.forEach(item => item.style.display = 'inline-block');
+            task.then(()=>{
+                afterUpload.forEach(item => item.style.display = 'inline-block');
+                uploadButton.disabled = true;
+                document.getElementById("uploaded_song").disabled = true;
+            });
         } else {
             alert('insert artist and title');
         }

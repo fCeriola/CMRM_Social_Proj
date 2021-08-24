@@ -193,7 +193,7 @@ def chromogram_f(artist, title):
     fn_wav = my_path + name_of_file
     print("fn_wav status: ok \nanalyzing...")
 
-
+    
     N = 4096
     H = 2048
     X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
