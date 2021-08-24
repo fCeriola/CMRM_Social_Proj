@@ -1,8 +1,8 @@
-const poolList = document.querySelector('#pool-list');
+const poolList = document.querySelector('#post-list');
 
 // create element
-//doc => POOLS3--->NameOfSong,Analytics,userId
-function renderPools(doc){
+//doc => Posts--->NameOfSong,Analytics,usernick
+function renderPosts(doc){
     
     
     let li = document.createElement('li');
@@ -42,22 +42,22 @@ function renderPools(doc){
     let ChordsString = document.createElement('p')
     let NameOfSongFile = document.createElement('p');
     let TimestampsInSec = document.createElement('p'); 
-    let PoolDescription = document.createElement('p')
+    let Description = document.createElement('p')
     
 
     li.setAttribute('data-id', doc.id);
     ChordsString.textContent = doc.data().ChordsString;
-    NameOfSongFile.textContent = doc.data().NameOfSongFile;
+    NameOfSongFile.textContent = doc.data().NameOfSongFile +`<i>uploaded by</i> ${doc.data().UserNick}`
     TimestampsInSec.textContent = doc.data().TimestampsInSec;
-    PoolDescription.textContent = 'Description: '+doc.data().PoolDescription;
+    Description.textContent = 'Description: '+doc.data().Description;
 
     //append in the right order
     li.appendChild(header);   
     li.appendChild(content);
-    audio.appendChild(source)
+    audio.appendChild(source);
     content.appendChild(audio);
     header.appendChild(NameOfSongFile);
-    content.appendChild(PoolDescription);
+    content.appendChild(Description);
     content.appendChild(audio);
     content.appendChild(ChordsString);
     content.appendChild(TimestampsInSec);
@@ -74,7 +74,7 @@ function renderPools(doc){
     <h5>Comments from other users</h5>`
 
     //getting Comments Data
-        db.collection('comments').doc(doc.data().NameOfSongFile).collection('comments').get().then(snapshot => {
+        db.collection('Comments').doc(doc.data().NameOfSongFile).collection('comments').get().then(snapshot => {
             snapshot.docs.forEach(doccomm => {
                 renderComments(doccomm, commentsList);
             });
@@ -96,23 +96,21 @@ function renderPools(doc){
 
     function comment(user){
         const comment = newComment['comment-text'].value;
-        db.collection('comments').doc(doc.data().NameOfSongFile)
-            .collection('comments').doc().set({
-                comment: comment,
-                user: user.uid
+        db.collection('Posts').doc(doc.data().NameOfSongFile)
+            .collection('Comments').doc().set({
+                Text: comment,
+                User: db.collection('users').doc(user.uid).nick
             }).then(() => {
                 newComment.reset();
             })
             .then(() => {
-                renderComments(db.collection('comments').doc(doc.data().NameOfSongFile), commentsList);
+                renderComments(db.collection('Comments').doc(doc.data().NameOfSongFile), commentsList);
             })
     }
     //------------------------------------//
 
 }
 
-
-// db.collection('users').doc(user.uid).nick
 
 
 
@@ -133,9 +131,9 @@ function renderComments(doc, commentsList){
 
 
 // getting Pool data
-db.collection('Pools3').get().then(snapshot => {
+db.collection('Posts').get().then(snapshot => {
     snapshot.docs.forEach(doc => {
-        renderPools(doc);
+        renderPosts(doc);
     });
 }); 
 
