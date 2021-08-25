@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-2hih8i%kwud2g9(nwwoxrrt@9t(zq!5(!@)_6p_qey1j^*1x%b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['needchords.herokuapp.com']
+ALLOWED_HOSTS = ['needchords2.herokuapp.com']
 
 
 # Application definition
@@ -121,12 +122,12 @@ USE_TZ = True
 
 
 #static
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'backend/static') ]
+
+#STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'backend/static') ]
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #media
 #MEDIAFILES_DIRS = [ os.path.join(BASE_DIR, 'backend/media') ]
@@ -141,3 +142,7 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

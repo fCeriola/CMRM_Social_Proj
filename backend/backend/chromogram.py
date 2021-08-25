@@ -57,7 +57,7 @@ def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=Non
         X = librosa.feature.chroma_stft(S=X, sr=Fs, tuning=0, norm=None, hop_length=H, n_fft=N)
     if version == 'CQT':
         # Compute chroma features with CQT decomposition
-        X = librosa.feature.chroma_cqt(y=x, sr=Fs, hop_length=H, norm=None, threshold=1.0)
+        X = librosa.feature.chroma_cqt(y=x, sr=Fs, hop_length=H, norm=None)
     if version == 'IIR':
         # Compute chroma features with filter bank (using IIR elliptic filter)
         X = librosa.iirt(y=x, sr=Fs, win_length=N, hop_length=H, center=True, tuning=0.0)
