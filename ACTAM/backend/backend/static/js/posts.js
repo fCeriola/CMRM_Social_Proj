@@ -74,20 +74,7 @@ function renderPost(docPost){
     commentsList.innerHTML = `
     <br></br>
     <h5>Comments for this post</h5> `
-
-    //getting Comments Data
-    // db.collection('Posts').doc(docPost.data().NameOfSongFile).collection('Comments').get().then(snapshot => {
-    //     snapshot.docs.forEach(doccomm => {
-    //         renderComments(doccomm, commentsList);
-    //     });
-    // }); 
-    /*
-     --> for each document in comments, 
-            if comment.docu == this Post.id
-                then render all its comments
-    */
-
-    
+   
 
     //----------submit comment-----------//
     var usernick = "";
@@ -145,7 +132,7 @@ function commentFunc(user, comment, docu, commentForm){
 
 
 
-
+//---------Render comment Function-------//
 function renderComments(docComm, content){
 console.log('renderComments')
 
@@ -160,27 +147,29 @@ console.log('renderComments')
     user.textContent = docComm.data().User;
     comment.textContent = docComm.data().Text;
     date.innerHTML = `     (<em style="font-size: small;">${docComm.data().Date}</em>)   :  `;
-    // date.textContent = docComm.data().Date;
-
-
-    console.log(docComm.data().Date)
     
-
     content.appendChild(li);
     li.appendChild(form);
     form.appendChild(user);
     form.appendChild(date);
     form.appendChild(comment);
-    
-    
 }
 
 
-// getting Post data
-db.collection('Posts').get().then(snapshot => {
-    snapshot.docs.forEach(doc => {
-        renderPost(doc);
-    });
+// // getting Post 
+// db.collection('Posts').get().then(snapshot => {
+//     snapshot.docs.forEach(doc => {
+//         renderPost(doc);
+//     });
+// }); 
+
+db.collection('Posts').onSnapshot(snapshot => {
+    let changes = snapshot.docChanges();
+    changes.forEach(change =>{
+            if (change.type == 'added'){
+                renderPost(change.doc)
+            }
+    })
 }); 
 
 //set images

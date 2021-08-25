@@ -57,7 +57,7 @@ def compute_chromagram_from_filename(fn_wav, Fs=22050, N=4096, H=2048, gamma=Non
         X = librosa.feature.chroma_stft(S=X, sr=Fs, tuning=0, norm=None, hop_length=H, n_fft=N)
     if version == 'CQT':
         # Compute chroma features with CQT decomposition
-        X = librosa.feature.chroma_cqt(y=x, sr=Fs, hop_length=H, norm=None)
+        X = librosa.feature.chroma_cqt(y=x, sr=Fs, hop_length=H, norm=None, threshold=1.0)
     if version == 'IIR':
         # Compute chroma features with filter bank (using IIR elliptic filter)
         X = librosa.iirt(y=x, sr=Fs, win_length=N, hop_length=H, center=True, tuning=0.0)
@@ -196,7 +196,7 @@ def chromogram_f(artist, title):
     
     N = 4096
     H = 2048
-    X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='STFT')
+    X_STFT, Fs_X, x, Fs, x_dur = compute_chromagram_from_filename(fn_wav, N=N, H=H, gamma=0.1, version='IIR')
     generate_chord_templates()
     # Chord recognition
     X = X_STFT
