@@ -1,0 +1,189 @@
+/* -------------------------------- NAVBAR ----------------------- */
+
+.navbar {
+    grid-area: menu;
+    height: auto;
+    max-width: 20em;
+    margin: 0 auto;
+    margin-right: 0;
+    text-align: center;
+}
+
+
+/* stile nav */
+
+.navbar ul li a {
+    color: white;
+    font-size: 1em;
+    display: block;
+    padding: 1em 3em 1em 3em;
+    text-decoration: none;
+    /* togliere sottolineatura ai link*/
+    background-color: rgb(68, 171, 231);
+}
+
+
+/* togliere impostazioni pallini nelle liste */
+
+.navbar ol,
+ul {
+    list-style: none;
+}
+
+
+/* on hover colore blu*/
+
+.navbar ul li a:hover {
+    background-color: rgb(231, 193, 68);
+    color: black;
+}
+
+
+/* Pagina visitata in questo momento rimane il nav menu in grigio */
+
+.navbar ul li a.active {
+    background-color: rgb(231, 193, 68);
+    color: black;
+}
+
+.navbar ul li a.disable {
+    pointer-events: none;
+    cursor: default;
+    color: rgb(231, 193, 68);
+}
+
+
+/* ---------------------------- END NAVBAR ------------------------------- */
+
+body {
+    background: #a3d7fa;
+    /* font-family: ubuntu; */
+}
+
+.content {
+    background: #fff;
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 20px 30px;
+    border-radius: 10px 120px 10px 10px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1)
+}
+
+.content-small {
+    background: #fff;
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 20px 30px;
+    border-radius: 10px 80px 10px 10px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1)
+}
+
+
+/* ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+li {
+    padding: 20px;
+    background: #f6f6f6;
+    font-size: 20px;
+    color: #555;
+    position: relative;
+    border-bottom: 1px solid #e6e6e6;
+    height: 46px;
+}
+
+li:nth-child(even) {
+    padding: 20px;
+    background: #f2f2f2;
+}
+
+li span {
+    display: block;
+}
+
+li span:nth-child(2) {
+    font-size: 16px;
+    margin-top: 6px;
+    color: #999;
+}
+
+li div {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background: rgba(255, 255, 255, 0.6);
+    width: 40px;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    cursor: pointer;
+}*/
+
+
+/* form input {
+    float: left;
+    width: 38%;
+    margin: 0;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    margin: 0 1%;
+    padding: 10px;
+    display: block;
+    box-sizing: border-box;
+    font-size: 18px;
+} */
+
+
+/* form input:focus {
+    outline: none;
+    border-bottom: 3px solid #88236f;
+    padding-bottom: 8px;
+    transition: all ease 0.2s;
+} */
+
+
+/* form:after {
+    content: '';
+    clear: both;
+    display: block;
+} */
+
+button {
+    border: 0;
+    background: #fff;
+    border-radius: 10px;
+    padding: 13px;
+    width: 14%;
+    box-shadow: -1px 0px 1px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    font-family: ubuntu;
+    letter-spacing: 1px;
+    color: #999;
+}
+
+.navbuttons {
+    position: absolute;
+    left: 70%;
+    background-color: #42A5F5;
+}
+
+
+/*-----------------USER ACCOUNT------------- */
+
+#user-img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 2px solid navy;
+}
+
+#info {
+    margin-left: 100%;
+    padding: 5px;
+}
+
+
+/*-----------POOLS------*/
